@@ -2,7 +2,7 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>D:\WinApi_Project\WinApi_project\FootballFramework\OutPut\bin_debug\Gamep_winapiframework.exe</FullPath>
+      <FullPath>C:\Football\FootballFramework\OutPut\bin_debug\Gamep_winapiframework.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />

@@ -44,12 +44,6 @@
     <Filter Include="Engine\04. Object\Player">
       <UniqueIdentifier>{49afdb6e-7b7a-4275-aa72-b49b4860c87a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\04. Object\Monster">
-      <UniqueIdentifier>{e686519b-9a51-4335-8ed1-4bf722bfbc75}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\04. Object\Bullet">
-      <UniqueIdentifier>{847f42a6-7d6d-4e74-8f48-ade7a3898880}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\06. Resource">
       <UniqueIdentifier>{6da22eb3-22a2-49cb-964d-d1fe2361305d}</UniqueIdentifier>
     </Filter>
@@ -132,12 +126,6 @@
     </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>Engine\04. Object\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="Monster.h">
-      <Filter>Engine\04. Object\Monster</Filter>
-    </ClInclude>
-    <ClInclude Include="Bullet.h">
-      <Filter>Engine\04. Object\Bullet</Filter>
     </ClInclude>
     <ClInclude Include="Res.h">
       <Filter>Engine\06. Resource</Filter>
@@ -229,12 +217,6 @@
     </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>Engine\04. Object\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="Monster.cpp">
-      <Filter>Engine\04. Object\Monster</Filter>
-    </ClCompile>
-    <ClCompile Include="Bullet.cpp">
-      <Filter>Engine\04. Object\Bullet</Filter>
     </ClCompile>
     <ClCompile Include="Res.cpp">
       <Filter>Engine\06. Resource</Filter>

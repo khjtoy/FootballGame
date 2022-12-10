@@ -19,6 +19,9 @@ private:
 
 //    Player* Clone{ return new Player(*this); }
     CLONE(Player);
+private:
+    float hSpeed;
+    float vSpeed;
 public:
     void Update()       override;
     void Render(HDC _dc) override;
