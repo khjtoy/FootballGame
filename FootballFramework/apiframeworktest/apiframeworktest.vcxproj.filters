@@ -80,6 +80,12 @@
     <Filter Include="Engine\03. Manager\SoundMgr">
       <UniqueIdentifier>{e09d7cab-b2dc-4a5f-8924-8af5317c88d2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\04. Object\Staduim">
+      <UniqueIdentifier>{5b551500-a79b-4cf2-9ded-0a8649f2d778}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\04. Object\Ball">
+      <UniqueIdentifier>{00bb77a1-2c9e-4866-b0e6-44f1e9f78c93}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core.h">
@@ -172,6 +178,10 @@
     <ClInclude Include="SoundMgr.h">
       <Filter>Engine\03. Manager\SoundMgr</Filter>
     </ClInclude>
+    <ClInclude Include="Staduim.h">
+      <Filter>Engine\04. Object\Staduim</Filter>
+    </ClInclude>
+    <ClInclude Include="Ball.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="apiframeworktest.rc">
@@ -260,5 +270,9 @@
     <ClCompile Include="SoundMgr.cpp">
       <Filter>Engine\03. Manager\SoundMgr</Filter>
     </ClCompile>
+    <ClCompile Include="Staduim.cpp">
+      <Filter>Engine\04. Object\Staduim</Filter>
+    </ClCompile>
+    <ClCompile Include="Ball.cpp" />
   </ItemGroup>
 </Project>

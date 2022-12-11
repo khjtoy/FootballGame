@@ -2,7 +2,8 @@
 #include "Scene_Start.h"
 #include "Object.h"
 #include "Player.h"
-#include "Monster.h"
+#include "Staduim.h"
+#include "Ball.h"
 #include "Core.h"
 #include "Image.h"
 #include "PathMgr.h"
@@ -21,11 +22,25 @@ void Scene_Start::Enter()
 {
 	SoundMgr::GetInst()->LoadSound(L"BGM", true, L"Sound\\pianobgm.wav");
 	SoundMgr::GetInst()->Play(L"BGM");
+
+	// 맵 그리기
+	Staduim*  pObj2 = new Staduim;
+	pObj2->SetPos(Vec2(Core::GetInst()->GetResolution().x / 2, Core::GetInst()->GetResolution().y / 2));
+	pObj2->SetScale(Vec2(1.f, 1.f));
+	AddObject(pObj2, GROUP_TYPE::PLAYER);
+
+
 	// Object 추가
-	Object* pObj = new Player;
-	pObj->SetPos(Vec2(Core::GetInst()->GetResolution().x/2, Core::GetInst()->GetResolution().y/2));
-	pObj->SetScale(Vec2(100.f,100.f));
-	AddObject(pObj, GROUP_TYPE::PLAYER);
+	Object* pPObj = new Player;
+	pPObj->SetPos(Vec2(Core::GetInst()->GetResolution().x/2, Core::GetInst()->GetResolution().y/2));
+	//pObj->SetScale(Vec2(1.f,1.f));
+	AddObject(pPObj, GROUP_TYPE::PLAYER);
+
+	Object* pObj = new Ball;
+	pObj->SetPos(Vec2(Core::GetInst()->GetResolution().x / 2, Core::GetInst()->GetResolution().y / 2));
+	//pObj->SetScale(Vec2(1.f,1.f));
+	AddObject(pObj, GROUP_TYPE::BALL);
+	pObj->SetParent(pPObj);
 }
 
 void Scene_Start::Exit()

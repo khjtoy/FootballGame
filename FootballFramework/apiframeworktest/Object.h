@@ -8,15 +8,18 @@ private:
 	//POINT m_ptScale;
 	Vec2 m_vPos;
 	Vec2 m_vScale;
+	Object* m_parentObj;
 	Collider* m_pCollider;
 	Animator* m_pAnimator;
 	wstring m_strName;
 	bool    m_bAlive;
 public:
-	void SetPos(Vec2 _vPos) { m_vPos = _vPos; }
+	void SetPos(Vec2 _vPos) { m_vPos = m_parentObj != NULL ? _vPos + m_parentObj->GetPos() : _vPos; }
 	void SetScale(Vec2 _vScale) { m_vScale = _vScale; }
+	void SetParent(Object* parentObj) { m_parentObj = parentObj; }
 	const Vec2& GetPos() { return m_vPos; }
 	const Vec2& GetScale() { return m_vScale; }
+	Object* GetParent() { return m_parentObj; }
 	Collider* GetCollider() { return m_pCollider; }
 	Animator* GetAnimator() { return m_pAnimator; }
 	void	CreateCollider();
