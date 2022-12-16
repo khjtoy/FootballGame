@@ -30,7 +30,7 @@ Animation* Animator::FindAnimation(const wstring _strName)
 {
 	map<wstring, Animation*>::iterator iter = m_mapAni.find(_strName);
 	
-	if (iter == m_mapAni.end())
+	if (iter == m_mapAni.end()) // 없으면 end 값 나옴 
 		return nullptr;
 	return iter->second;
 }

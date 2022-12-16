@@ -77,3 +77,10 @@ enum class EVENT_TYPE
 
 	END,
 };
+
+enum class	STATE_TYPE
+{
+	IDLE, 
+	RUN, 
+	ACT, // 공격수면 슛, 골키퍼면 다이빙 
+};
