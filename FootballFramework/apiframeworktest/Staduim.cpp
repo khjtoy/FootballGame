@@ -23,11 +23,12 @@ void Staduim::Render(HDC _dc)
 	int Height = (int)m_Image->GetHeight();
 
 	Vec2 vPos = GetPos();
+	Vec2 vScale = GetScale();
 	//¸¶Á¨Å¸ »ö»ó »¬¶§ transparent: Åõ¸íÇÑ
 	TransparentBlt(_dc
 		, (int)(vPos.x - (float)(Width / 2))
 		, (int)(vPos.y - (float)(Height / 2))
-		, Width, Height
+		, Width * vScale.x, Height * vScale.y
 		, m_Image->GetDC()
 		, 0, 0, Width, Height
 		, RGB(255, 0, 255));

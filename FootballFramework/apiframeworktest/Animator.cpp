@@ -41,6 +41,11 @@ void Animator::Play(const wstring _strName, bool _bRepeat)
 	m_bRepeat = _bRepeat;
 }
 
+void Animator::Stop()
+{
+	m_pCurAni = nullptr;
+}
+
 
 void Animator::Update()
 {

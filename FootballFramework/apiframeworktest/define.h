@@ -39,8 +39,10 @@ enum class KEY
 enum class GROUP_TYPE
 {
 	DEFAULT,
-	PLAYER,
+	MAP,
+	Goal,
 	BALL,
+	PLAYER,
 
 	END = 32,
 };

@@ -19,6 +19,7 @@ public:
 	void CreateAnimation(const wstring _strName, Image* _pImage, Vec2 _vLT, Vec2 _vSliceSize, Vec2 _vStep, UINT _iFrameCount, float _fDuration);
 	Animation* FindAnimation(const wstring _strName);
 	void Play(const wstring _strName, bool _bRepeat);
+	void Stop();
 	void Update();
 	void Render(HDC _dc);
 };

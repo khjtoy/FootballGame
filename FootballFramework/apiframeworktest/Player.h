@@ -22,6 +22,7 @@ private:
 private:
     float hSpeed;
     float vSpeed;
+    bool isShoot;
 public:
     void Update()       override;
     void Render(HDC _dc) override;
