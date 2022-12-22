@@ -1,3 +1,4 @@
+
 #include "pch.h"
 #include "BWindow.h"
 #include "Core.h"
@@ -12,6 +13,7 @@ BWindow::~BWindow()
 
 LRESULT BWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
+
 	switch (message)
 	{
 	case WM_DESTROY:

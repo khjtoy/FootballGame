@@ -205,6 +205,9 @@
     <ClInclude Include="StateMachine.h">
       <Filter>Engine\09.AI\State</Filter>
     </ClInclude>
+    <ClInclude Include="TestPlayer.h">
+      <Filter>Engine\04. Object\Player</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="apiframeworktest.rc">
@@ -313,6 +316,9 @@
     </ClCompile>
     <ClCompile Include="StateMachine.cpp">
       <Filter>Engine\09.AI\State</Filter>
+    </ClCompile>
+    <ClCompile Include="TestPlayer.cpp">
+      <Filter>Engine\04. Object\Player</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

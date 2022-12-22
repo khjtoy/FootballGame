@@ -1,54 +1,71 @@
 #include "pch.h"
 #include "StateMachine.h"
+#include "State.h"
+#include "TestPlayer.h"
 
-template<typename T>
-StateMachine<T>::StateMachine(T& owner) 
-	: m_stateMap(nullptr)
-	, m_prevState(nullptr)
+StateMachine::StateMachine(TestPlayer* owner) 
+	: m_prevState(nullptr)
 	, m_nowState(nullptr)
 {
-	this->m_owner = owner; 
+	this->m_owner = owner;
 }
 
-template<typename T>
-StateMachine<T>::~StateMachine()
+StateMachine::~StateMachine()
 {
-	if (m_owner != null)
-		delete m_owner; 
-	if (m_stateMap != null)
-		delete m_stateMap;
-	if (m_prevState != null)
+	if (m_owner != nullptr)
+		delete m_owner;
+	if (m_stateMap.empty() == false)
+		m_stateMap.clear();
+	if (m_prevState != nullptr)
 		delete m_prevState;
-	if (m_nowState != null)
+	if (m_nowState != nullptr)
 		delete m_nowState;
 }
 
-template<typename T>
-void StateMachine<T>::AddState(State<T>* state)
+void StateMachine::Update()
 {
-	m_stateMap.insert(make_pair(state->));
+	m_nowState->Stay();
 }
 
-template<typename T>
-State<T>* StateMachine<T>::GetState(STATE_TYPE state)
+void StateMachine::AddState(State* state)
 {
-	return m_nowState;
+	m_stateMap.insert(make_pair(state->GetStateType(), state));
 }
 
-template<typename T>
-void StateMachine<T>::ChangeState(STATE_TYPE stateType)
+wstring StateMachine::GetCurStateName()
 {
-	// 상태가 있었다면 Exit 수행 
+	wstring str; 
+	if (m_nowState->GetStateType() == STATE_TYPE::IDLE)
+	{
+		str = L"IDLE";
+	}
+	else if (m_nowState->GetStateType() == STATE_TYPE::RUN)
+	{
+		str = L"RUN";
+	}
+	else if (m_nowState->GetStateType() == STATE_TYPE::ACT)
+	{
+		str = L"ACT";
+	}
+	else
+	{
+		str = L"설정 안 한 상태";
+	}
+	return str;
+}
+
+void StateMachine::ChangeState(STATE_TYPE stateType)
+{
 	if (m_nowState != nullptr)
 	{
-		m_nowState->Exit(); 
+		m_nowState->Exit();
 	}
 	// 수행후 prevState로 변경 
-	m_prevState = m_nowState; 
-	
+	m_prevState = m_nowState;
+
 	// map에서 stateType을 통해 nowState 설정 
 	m_nowState = m_stateMap[stateType];
-	m_nowState->Enter(); 
+	m_nowState->Enter();
 }
 
 

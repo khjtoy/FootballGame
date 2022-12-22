@@ -10,6 +10,8 @@
 #include "KeyMgr.h"
 #include "SceneMgr.h"
 #include "SoundMgr.h"
+
+#include "TestPlayer.h"
 Scene_Start::Scene_Start()
 {
 }
@@ -26,6 +28,12 @@ void Scene_Start::Enter()
 	pObj->SetPos(Vec2(Core::GetInst()->GetResolution().x/2, Core::GetInst()->GetResolution().y/2));
 	pObj->SetScale(Vec2(100.f,100.f));
 	AddObject(pObj, GROUP_TYPE::PLAYER);
+
+	// 디버그용 오브젝트
+	Object* testPlayer = new TestPlayer; 
+	testPlayer->SetPos(Vec2(Core::GetInst()->GetResolution().x / 2- 200, Core::GetInst()->GetResolution().y / 2 - 200));
+	testPlayer->SetScale(Vec2(500.f, 500.f));
+	AddObject(testPlayer, GROUP_TYPE::TESTPLAYER);
 
 //	Object* pOtherPlayer = new Player(*(Player*)pObj);
 	/*Object* pOtherPlayer = pObj->Clone();

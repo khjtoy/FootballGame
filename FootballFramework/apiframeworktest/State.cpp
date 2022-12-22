@@ -1,15 +1,18 @@
 #include "pch.h"
 #include "State.h"
-template<typename T>
-State<T>::State(T& owner, StateMachine<T>& stateMachine, STATE_TYPE stateType)
+#include "TestPlayer.h"
+#include "StateMachine.h"
+
+State::State(TestPlayer* owner, StateMachine* stateMachine, STATE_TYPE stateType)
+	:m_owner(nullptr)
+	, m_stateMachine(nullptr)
 {
-	this->m	_owner = owner; 
-	this->m_stateMachine = stateMachine; 
-	this->m_stateType = stateType; 
+	this->m_owner = owner;
+	this->m_stateMachine = stateMachine;
+	this->m_stateType = stateType;
 }
 
-template<typename T>
-State<T>::~State()
+State::~State()
 {
 	if (m_owner != nullptr)
 	{
