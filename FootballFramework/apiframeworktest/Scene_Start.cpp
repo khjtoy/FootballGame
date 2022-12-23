@@ -31,8 +31,8 @@ void Scene_Start::Enter()
 
 	// 디버그용 오브젝트
 	Object* testPlayer = new TestPlayer; 
-	testPlayer->SetPos(Vec2(Core::GetInst()->GetResolution().x / 2- 200, Core::GetInst()->GetResolution().y / 2 - 200));
-	testPlayer->SetScale(Vec2(500.f, 500.f));
+	testPlayer->SetPos(Vec2(Core::GetInst()->GetResolution().x / 2, (long)100));
+	//testPlayer->SetScale(Vec2(100.f, 100.f));
 	AddObject(testPlayer, GROUP_TYPE::TESTPLAYER);
 
 //	Object* pOtherPlayer = new Player(*(Player*)pObj);
