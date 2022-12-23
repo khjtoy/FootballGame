@@ -171,6 +171,7 @@
     <ClInclude Include="framework.h" />
     <ClInclude Include="func.h" />
     <ClInclude Include="Goal.h" />
+    <ClInclude Include="GoalText.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="KeyMgr.h" />
     <ClInclude Include="Object.h" />
@@ -202,6 +203,7 @@
     <ClCompile Include="EventMgr.cpp" />
     <ClCompile Include="func.cpp" />
     <ClCompile Include="Goal.cpp" />
+    <ClCompile Include="GoalText.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="KeyMgr.cpp" />
     <ClCompile Include="main.cpp" />

@@ -89,6 +89,9 @@
     <Filter Include="Engine\04. Object\Goal">
       <UniqueIdentifier>{69ba4bc6-73a9-44d5-81d3-c3cc2fadde35}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\04. Object\GoalText">
+      <UniqueIdentifier>{a24b04f9-c2c9-4b7a-8c97-551a7cb770e7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core.h">
@@ -190,6 +193,9 @@
     <ClInclude Include="Goal.h">
       <Filter>Engine\04. Object\Goal</Filter>
     </ClInclude>
+    <ClInclude Include="GoalText.h">
+      <Filter>Engine\04. Object\GoalText</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="apiframeworktest.rc">
@@ -286,6 +292,9 @@
     </ClCompile>
     <ClCompile Include="Goal.cpp">
       <Filter>Engine\04. Object\Goal</Filter>
+    </ClCompile>
+    <ClCompile Include="GoalText.cpp">
+      <Filter>Engine\04. Object\GoalText</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

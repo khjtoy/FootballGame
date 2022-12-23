@@ -6,9 +6,12 @@
 #include "Animation.h"
 #include "Vec2.h"
 #include "Player.h"
+#include "GoalText.h"
+#include "Core.h"
 #include "KeyMgr.h"
 #include "TimeMgr.h"
 #include "Collider.h"
+
 
 Ball::Ball()
 	:ballPos(8.0f,3.0f),
@@ -88,5 +91,14 @@ void Ball::EnterCollision(Collider* _pOther)
 	{
 		speedX = 0;
 		speedY = 0;
+		CreateGoalText();
 	}
+}
+
+void Ball::CreateGoalText()
+{
+	GoalText* pObj = new GoalText;
+	pObj->SetPos(Vec2(Core::GetInst()->GetResolution().x / 2 - 80, Core::GetInst()->GetResolution().y / 8 - 10));
+	pObj->SetScale(Vec2(2.f, 2.f));
+	CreateObject(pObj, GROUP_TYPE::UI);
 }

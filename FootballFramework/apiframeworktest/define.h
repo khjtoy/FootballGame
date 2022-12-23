@@ -43,6 +43,7 @@ enum class GROUP_TYPE
 	Goal,
 	BALL,
 	PLAYER,
+	UI,
 
 	END = 32,
 };
