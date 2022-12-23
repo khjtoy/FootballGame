@@ -28,7 +28,8 @@ void Animation::Update()
 		if (m_iCurFrm >= m_vecFrm.size())
 		{
 //			m_iCurFrm = 0;
-			m_iCurFrm = -1;
+			//m_iCurFrm = -1;
+			m_iCurFrm = m_vecFrm.size() - 1;
 			m_bFinish = true;
 			m_fAccTime = 0.f;
 			return;
@@ -39,8 +40,8 @@ void Animation::Update()
 
 void Animation::Render(HDC _dc)
 {
-	if (m_bFinish)
-		return;
+	//if (m_bFinish)
+		//return;
 	Object* pObj = m_pAnimator->GetObj();
 	Vec2 vPos = pObj->GetPos();
 	Vec2 vScale = pObj->GetScale();

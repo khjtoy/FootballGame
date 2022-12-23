@@ -31,7 +31,7 @@ Player::Player()
 	GetAnimator()->Play(L"PlayerRun", true);
 
 	// animation offset 위로 올리기. 
-	Animation* pAnim = GetAnimator()->FindAnimation(L"PlayerRun");
+	//Animation* pAnim = GetAnimator()->FindAnimation(L"PlayerRun");
 	//for(size_t i=0;i<pAnim->GetMaxFrame();i++)
 	//	pAnim->GetFrame(i).vOffset = Vec2(10.f, -50.f);
 }

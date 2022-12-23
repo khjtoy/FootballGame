@@ -52,9 +52,8 @@ enum class GROUP_TYPE
 enum class SCENE_TYPE
 {
 	START,
-	SCENE_01,
-	TOOL,
-	SCENE_02,
+	STAGE,
+	INGAME,
 	END,
 };
 
@@ -85,4 +84,10 @@ enum class	STATE_TYPE
 	IDLE, 
 	RUN, 
 	ACT, // °ø°Ý¼ö¸é ½¸, °ñÅ°ÆÛ¸é ´ÙÀÌºù 
+};
+
+enum class Dir
+{
+	UP,
+	DOWN
 };
