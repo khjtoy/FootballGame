@@ -45,7 +45,7 @@ enum class GROUP_TYPE
 	PLAYER,
 	UI,
 
-	TESTPLAYER = 31,
+	Goalkeeper = 31,
 	END = 32,
 };
 
@@ -84,5 +84,6 @@ enum class	STATE_TYPE
 {
 	IDLE, 
 	RUN, 
-	ACT, // °ø°Ý¼ö¸é ½¸, °ñÅ°ÆÛ¸é ´ÙÀÌºù 
+	DIVE, 	
+	TACKLE
 };

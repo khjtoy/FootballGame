@@ -9,6 +9,7 @@ private:
 	Vec2 m_vPos = Vec2(0, 0);
 	Vec2 m_vScale = Vec2(1, 1);
 	Object* m_parentObj;
+	Object* m_followObj; 
 	Collider* m_pCollider;
 	Animator* m_pAnimator;
 	wstring m_strName;
@@ -17,9 +18,12 @@ public:
 	void SetPos(Vec2 _vPos) { m_vPos =  m_parentObj != nullptr ? _vPos + m_parentObj->GetPos() : _vPos; }
 	void SetScale(Vec2 _vScale) { m_vScale = _vScale; }
 	void SetParent(Object* parentObj) { m_parentObj = parentObj; }
+	void SetFollower(Object* followObj) { m_followObj = followObj; }
+	const Vec2& GetOrigin() { return Vec2(m_vPos.x + m_vScale.x / 2, m_vPos.y + m_vScale.y / 2); }
 	const Vec2& GetPos() { return m_vPos; }
 	const Vec2& GetScale() { return m_vScale; }
 	Object* GetParent() { return m_parentObj; }
+	Object* GetFollower() { return m_followObj; }
 	Collider* GetCollider() { return m_pCollider; }
 	Animator* GetAnimator() { return m_pAnimator; }
 	void	CreateCollider();

@@ -1,13 +1,13 @@
 #pragma once
 #include "State.h"
 
-class TestPlayer; 
+class Goalkeeper; 
 class Player;
 class RunState :
     public State
 {
 public:
-    RunState(TestPlayer* owner, StateMachine* stateMachine, STATE_TYPE stateType);    // State을(를) 통해 상속됨
+    RunState(Goalkeeper* owner, StateMachine* stateMachine, STATE_TYPE stateType);    // State을(를) 통해 상속됨
 public:
     virtual void Enter() override;
     virtual void Stay() override;

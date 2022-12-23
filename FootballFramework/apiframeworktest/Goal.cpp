@@ -28,8 +28,8 @@ void Goal::Render(HDC _dc)
 	Vec2 vPos = GetPos();
 	Vec2 vScale = GetScale();
 
-	vPos.x = vPos.x - (Width * vScale.x) / 2.f;
-	vPos.y = vPos.y - (Height * vScale.y) / 2.f;
+	vPos.x = vPos.x - (Width * vScale.x) / 2.f; 
+	vPos.y = vPos.y - (Height * vScale.y) / 2.f; 
 
 	TransparentBlt(_dc
 		, (int)(vPos.x - (float)(Width / 2))

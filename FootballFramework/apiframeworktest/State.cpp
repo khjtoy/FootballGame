@@ -1,9 +1,9 @@
 #include "pch.h"
 #include "State.h"
-#include "TestPlayer.h"
+#include "Goalkeeper.h"
 #include "StateMachine.h"
 
-State::State(TestPlayer* owner, StateMachine* stateMachine, STATE_TYPE stateType)
+State::State(Goalkeeper* owner, StateMachine* stateMachine, STATE_TYPE stateType)
 	:m_owner(nullptr)
 	, m_stateMachine(nullptr)
 {

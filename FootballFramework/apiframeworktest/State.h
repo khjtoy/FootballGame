@@ -1,15 +1,15 @@
 #pragma once
-class TestPlayer; 
+class Goalkeeper; 
 class StateMachine; 
 //template <typename T> 
 class State
 {
 protected:
 	STATE_TYPE m_stateType;
-	TestPlayer* m_owner;
+	Goalkeeper* m_owner;
 	StateMachine* m_stateMachine;
 public:
-	State(TestPlayer* owner, StateMachine* stateMachine, STATE_TYPE stateType);
+	State(Goalkeeper* owner, StateMachine* stateMachine, STATE_TYPE stateType);
 
 	virtual ~State();
 public:

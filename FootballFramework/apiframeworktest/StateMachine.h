@@ -1,19 +1,20 @@
 #pragma once
 #include "pch.h"
 
-class TestPlayer; 
+class Goalkeeper; 
 class State; 
 //template <typename T> 
 class StateMachine
 {
 private:
-	TestPlayer* m_owner;
+	Object* m_target; 
+	Goalkeeper* m_owner;
 	map< STATE_TYPE, State* > m_stateMap;
 	State* m_prevState;
 	State* m_nowState;
 public:
 
-	StateMachine(TestPlayer* owner);
+	StateMachine(Goalkeeper* owner);
 	~StateMachine();
 public:
 	void Update(); // 현재 상태 업데이트 
@@ -24,7 +25,5 @@ public:
 	State* GetCurState() {return m_nowState;}
 	wstring GetCurStateName(); 
 	void ChangeState(STATE_TYPE stateType); // 상태 변경 
-	
-
 };
 

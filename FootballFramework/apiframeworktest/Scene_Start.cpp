@@ -13,7 +13,7 @@
 #include "SceneMgr.h"
 #include "SoundMgr.h"
 
-#include "TestPlayer.h"
+#include "Goalkeeper.h"
 Scene_Start::Scene_Start()
 {
 }
@@ -51,10 +51,11 @@ void Scene_Start::Enter()
 	AddObject(pObj, GROUP_TYPE::BALL);
 
 	// 디버그용 오브젝트
-	Object* testPlayer = new TestPlayer; 
-	testPlayer->SetPos(Vec2(Core::GetInst()->GetResolution().x / 2, (long)100));
-	//testPlayer->SetScale(Vec2(100.f, 100.f));
-	AddObject(testPlayer, GROUP_TYPE::TESTPLAYER);
+	Object* testPlayer = new Goalkeeper(100.f); 
+	testPlayer->SetFollower(pPObj);
+	testPlayer->SetPos(Vec2(Core::GetInst()->GetResolution().x / 2 - 100, (long)100));
+	testPlayer->SetScale(Vec2(2.f, 2.f));
+	AddObject(testPlayer, GROUP_TYPE::Goalkeeper);
 
 //	Object* pOtherPlayer = new Player(*(Player*)pObj);
 	/*Object* pOtherPlayer = pObj->Clone();

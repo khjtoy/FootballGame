@@ -1,9 +1,9 @@
 #include "pch.h"
 #include "IdleState.h"
-#include "TestPlayer.h"
+#include "Goalkeeper.h"
+#include "StateMachine.h"
 
-
-IdleState::IdleState(TestPlayer* owner, StateMachine* stateMachine,
+IdleState::IdleState(Goalkeeper* owner, StateMachine* stateMachine,
 	STATE_TYPE stateType)
 	:State(owner,stateMachine,stateType)
 {
@@ -17,6 +17,10 @@ void IdleState::Enter()
 
 void IdleState::Stay()
 {
+	if (this->m_owner->CheckTackleDistance() == true)
+	{
+		m_stateMachine->ChangeState(STATE_TYPE::TACKLE);
+	}
 	this->m_owner->SetDebugText2(L"IDLE STAY");
 }
 

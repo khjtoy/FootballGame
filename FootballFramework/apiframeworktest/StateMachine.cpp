@@ -1,9 +1,9 @@
 #include "pch.h"
 #include "StateMachine.h"
 #include "State.h"
-#include "TestPlayer.h"
+#include "Goalkeeper.h"
 
-StateMachine::StateMachine(TestPlayer* owner) 
+StateMachine::StateMachine(Goalkeeper* owner) 
 	: m_prevState(nullptr)
 	, m_nowState(nullptr)
 {
@@ -14,8 +14,8 @@ StateMachine::~StateMachine()
 {
 	if (m_owner != nullptr)
 		delete m_owner;
-	if (m_stateMap.empty() == false)
-		m_stateMap.clear();
+//	if (m_stateMap.empty() == false)
+//		m_stateMap.clear();
 	if (m_prevState != nullptr)
 		delete m_prevState;
 	if (m_nowState != nullptr)
@@ -24,7 +24,10 @@ StateMachine::~StateMachine()
 
 void StateMachine::Update()
 {
-	m_nowState->Stay();
+	if (m_nowState != nullptr)
+	{
+		m_nowState->Stay();
+	}
 }
 
 void StateMachine::AddState(State* state)
@@ -43,9 +46,13 @@ wstring StateMachine::GetCurStateName()
 	{
 		str = L"RUN";
 	}
-	else if (m_nowState->GetStateType() == STATE_TYPE::ACT)
+	else if (m_nowState->GetStateType() == STATE_TYPE::DIVE)
 	{
-		str = L"ACT";
+		str = L"DIVE";
+	}
+	else if (m_nowState->GetStateType() == STATE_TYPE::TACKLE)
+	{
+		str = L"TACKLE";
 	}
 	else
 	{

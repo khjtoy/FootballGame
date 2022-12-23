@@ -193,13 +193,14 @@
     <ClInclude Include="Staduim.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="StateMachine.h" />
+    <ClInclude Include="TackleState.h" />
     <ClInclude Include="targetver.h" />
-    <ClInclude Include="TestPlayer.h" />
+    <ClInclude Include="Goalkeeper.h" />
     <ClInclude Include="TimeMgr.h" />
     <ClInclude Include="Vec2.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ActState.cpp" />
+    <ClCompile Include="DiveState.cpp" />
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Animator.cpp" />
     <ClCompile Include="Ball.cpp" />
@@ -236,7 +237,8 @@
     <ClCompile Include="Staduim.cpp" />
     <ClCompile Include="State.cpp" />
     <ClCompile Include="StateMachine.cpp" />
-    <ClCompile Include="TestPlayer.cpp" />
+    <ClCompile Include="TackleState.cpp" />
+    <ClCompile Include="Goalkeeper.cpp" />
     <ClCompile Include="TimeMgr.cpp" />
     <ClCompile Include="Vec2.cpp" />
   </ItemGroup>
