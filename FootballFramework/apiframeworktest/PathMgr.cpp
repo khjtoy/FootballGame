@@ -12,7 +12,7 @@ PathMgr::~PathMgr()
 
 void PathMgr::Init()
 {
-	GetCurrentDirectory(255, m_szRsrcPath);
+	GetCurrentDirectory(255, m_szRsrcPath); // 현재 프로젝트 경로 설정 
 	
 	int Length = wcslen(m_szRsrcPath);
 
@@ -27,7 +27,7 @@ void PathMgr::Init()
 	}
 
 	// 문자열 이어붙여줘.
-	wcscat_s(m_szRsrcPath, 255, L"\\bin\\Res\\");
+	wcscat_s(m_szRsrcPath, 255, L"\\bin\\Res\\"); // 리소스 폴더 위치 
 
 	SetWindowText(Core::GetInst()->GetWndHandle(), m_szRsrcPath);
 }

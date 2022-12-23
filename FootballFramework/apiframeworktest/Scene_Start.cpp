@@ -12,6 +12,8 @@
 #include "KeyMgr.h"
 #include "SceneMgr.h"
 #include "SoundMgr.h"
+
+#include "TestPlayer.h"
 Scene_Start::Scene_Start()
 {
 }
@@ -42,11 +44,24 @@ void Scene_Start::Enter()
 	pPObj->SetScale(Vec2(2.f,2.f));
 	AddObject(pPObj, GROUP_TYPE::PLAYER);
 
+<<<<<<< HEAD
 	pObj = new Ball;
 	pObj->SetParent(pPObj);
 	pObj->SetPos(Vec2(Core::GetInst()->GetResolution().x / 2, Core::GetInst()->GetResolution().y / 2));
 	pObj->SetScale(Vec2(2.5f,2.5f));
 	AddObject(pObj, GROUP_TYPE::BALL);
+=======
+	// 디버그용 오브젝트
+	Object* testPlayer = new TestPlayer; 
+	testPlayer->SetPos(Vec2(Core::GetInst()->GetResolution().x / 2, (long)100));
+	//testPlayer->SetScale(Vec2(100.f, 100.f));
+	AddObject(testPlayer, GROUP_TYPE::TESTPLAYER);
+
+//	Object* pOtherPlayer = new Player(*(Player*)pObj);
+	/*Object* pOtherPlayer = pObj->Clone();
+	pOtherPlayer->SetPos(Vec2(Core::GetInst()->GetResolution().x / 2.f + 100.f, Core::GetInst()->GetResolution().y / 2.f));
+	AddObject(pOtherPlayer, GROUP_TYPE::PLAYER);*/
+>>>>>>> origin/KPG
 
 	// 충돌 지정
 	CollisionMgr::GetInst()->CheckGroup(GROUP_TYPE::BALL, GROUP_TYPE::Goal);

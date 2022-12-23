@@ -45,6 +45,7 @@ enum class GROUP_TYPE
 	PLAYER,
 	UI,
 
+	TESTPLAYER = 31,
 	END = 32,
 };
 
@@ -77,4 +78,11 @@ enum class EVENT_TYPE
 	SCENE_CHANGE,
 
 	END,
+};
+
+enum class	STATE_TYPE
+{
+	IDLE, 
+	RUN, 
+	ACT, // °ø°Ý¼ö¸é ½¸, °ñÅ°ÆÛ¸é ´ÙÀÌºù 
 };

@@ -17,10 +17,15 @@ Player::Player()
 {
 
 	// image 업로드
+<<<<<<< HEAD
 	Image* pImg = ResMgr::GetInst()->ImgLoad(L"PlayerFrontKick", L"Image\\PlayerKickF.bmp");
 
 	pImg = ResMgr::GetInst()->ImgLoad(L"PlayerMove", L"Image\\PlayerRun.bmp");
 
+=======
+	Image* pImg = ResMgr::GetInst()->ImgLoad(L"PlayerAni", L"Image\\jiwoo.bmp");
+	
+>>>>>>> origin/KPG
 	// animator 생성 및 animation 사용
 	CreateAnimator();
 	GetAnimator()->CreateAnimation(L"PlayerRun", pImg, Vec2(0.f, 0.f), Vec2(16.f, 24.f), Vec2(16.f, 0.f), 4, 0.05f);
