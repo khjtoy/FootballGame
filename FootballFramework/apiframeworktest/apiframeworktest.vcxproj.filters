@@ -86,19 +86,17 @@
     <Filter Include="Engine\03. Manager\SoundMgr">
       <UniqueIdentifier>{e09d7cab-b2dc-4a5f-8924-8af5317c88d2}</UniqueIdentifier>
     </Filter>
-<<<<<<< HEAD
     <Filter Include="Engine\04. Object\Goal">
       <UniqueIdentifier>{69ba4bc6-73a9-44d5-81d3-c3cc2fadde35}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\04. Object\GoalText">
+    </Filter>
       <UniqueIdentifier>{a24b04f9-c2c9-4b7a-8c97-551a7cb770e7}</UniqueIdentifier>
-=======
     <Filter Include="Engine\09.AI">
       <UniqueIdentifier>{23980cd0-7301-4507-9256-420406b57625}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\09.AI\State">
       <UniqueIdentifier>{7c6a5440-75de-45e0-8226-726ddfb7f146}</UniqueIdentifier>
->>>>>>> origin/KPG
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -192,7 +190,6 @@
     <ClInclude Include="SoundMgr.h">
       <Filter>Engine\03. Manager\SoundMgr</Filter>
     </ClInclude>
-<<<<<<< HEAD
     <ClInclude Include="Staduim.h">
       <Filter>Engine\04. Object\Staduim</Filter>
     </ClInclude>
@@ -202,9 +199,9 @@
     <ClInclude Include="Goal.h">
       <Filter>Engine\04. Object\Goal</Filter>
     </ClInclude>
-    <ClInclude Include="GoalText.h">
-      <Filter>Engine\04. Object\GoalText</Filter>
-=======
+	  <ClInclude Include="GoalText.h">
+		  <Filter>Engine\04. Object\GoalText</Filter>
+	  </ClInclude>
     <ClInclude Include="State.h">
       <Filter>Engine\09.AI\State</Filter>
     </ClInclude>
@@ -222,7 +219,6 @@
     </ClInclude>
     <ClInclude Include="TestPlayer.h">
       <Filter>Engine\04. Object\Player</Filter>
->>>>>>> origin/KPG
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -312,7 +308,6 @@
     <ClCompile Include="SoundMgr.cpp">
       <Filter>Engine\03. Manager\SoundMgr</Filter>
     </ClCompile>
-<<<<<<< HEAD
     <ClCompile Include="Staduim.cpp">
       <Filter>Engine\04. Object\Staduim</Filter>
     </ClCompile>
@@ -322,9 +317,9 @@
     <ClCompile Include="Goal.cpp">
       <Filter>Engine\04. Object\Goal</Filter>
     </ClCompile>
-    <ClCompile Include="GoalText.cpp">
-      <Filter>Engine\04. Object\GoalText</Filter>
-=======
+	  <ClCompile Include="GoalText.cpp">
+		  <Filter>Engine\04. Object\GoalText</Filter>
+	  </ClCompile>
     <ClCompile Include="State.cpp">
       <Filter>Engine\09.AI\State</Filter>
     </ClCompile>
@@ -342,7 +337,6 @@
     </ClCompile>
     <ClCompile Include="TestPlayer.cpp">
       <Filter>Engine\04. Object\Player</Filter>
->>>>>>> origin/KPG
     </ClCompile>
   </ItemGroup>
 </Project>
