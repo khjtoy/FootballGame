@@ -13,7 +13,8 @@
 #include "DiveCollider.h"
 #include "TimeMgr.h"
 #include "GoalText.h"
-
+#include "StageMgr.h"
+#include"StageData.h"
 InGameUI::InGameUI()
 	:explation(L"Press S to Start"),
 	 round(1)
@@ -85,7 +86,7 @@ void InGameUI::UISpawn()
 	// 대한민국 국기
 	flag1 = new Flag;
 	flag1->SetCheck(true);
-	flag1->SetcurIndex(5);
+	flag1->SetcurIndex((int)STAGE_TYPE::KOREA);
 	flag1->SetIndexImage();
 	flag1->SetPos(Vec2(Core::GetInst()->GetResolution().x / 2 + 100, Core::GetInst()->GetResolution().y / 2 + 200));
 	flag1->SetScale(Vec2(0.2f, 0.2f));
@@ -94,7 +95,7 @@ void InGameUI::UISpawn()
 	// 경쟁 팀 국기
 	flag2 = new Flag;
 	flag2->SetCheck(true);
-	flag2->SetcurIndex(0);
+	flag2->SetcurIndex((int)StageMgr::GetInst()->GetCurStageType());
 	flag2->SetIndexImage();
 	flag2->SetPos(Vec2(Core::GetInst()->GetResolution().x / 2 + 380, Core::GetInst()->GetResolution().y / 2 + 200));
 	flag2->SetScale(Vec2(0.2f, 0.2f));
@@ -121,15 +122,18 @@ void InGameUI::IngameSpawn()
 	pBObj->SetName(L"Ball");
 	CreateObject(pBObj, GROUP_TYPE::BALL);
 
+	float runSpeed = StageMgr::GetInst()->GetCurStageData()->RunSpeed;
+	float diveSpeed = StageMgr::GetInst()->GetCurStageData()->DiveSpeed;
+	float colxSize = StageMgr::GetInst()->GetCurStageData()->DiveColxSize;;
 	// 골키퍼 오브젝트
-	goalkeeper = new Goalkeeper(30.f, 600.f);
+	goalkeeper = new Goalkeeper(runSpeed, diveSpeed);
 	goalkeeper->SetName(L"Goalkeeper");
 	goalkeeper->SetFollower(pPObj);
 	goalkeeper->SetPos(Vec2(Core::GetInst()->GetResolution().x / 2 - 100, (long)100));
 	goalkeeper->SetScale(Vec2(2.f, 2.f));
 	CreateObject(goalkeeper, GROUP_TYPE::AI);
 	// 다이브 체크 콜라이더 오브젝트
-	diveCol = new DiveCollider(60.f);
+	diveCol = new DiveCollider(colxSize);
 	diveCol->SetName(L"DiveCollider");
 	diveCol->SetParent(goalkeeper);
 	//diveCol->SetPos(Vec2(Core::GetInst()->GetResolution().x / 2 - 100, (long)100));

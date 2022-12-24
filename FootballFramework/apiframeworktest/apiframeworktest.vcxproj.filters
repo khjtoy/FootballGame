@@ -45,6 +45,8 @@
     <ClCompile Include="TimeMgr.cpp" />
     <ClCompile Include="Vec2.cpp" />
     <ClCompile Include="VSIcon.cpp" />
+    <ClCompile Include="StageMgr.cpp" />
+    <ClCompile Include="StageData.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
@@ -95,6 +97,8 @@
     <ClInclude Include="TimeMgr.h" />
     <ClInclude Include="Vec2.h" />
     <ClInclude Include="VSIcon.h" />
+    <ClInclude Include="StageMgr.h" />
+    <ClInclude Include="StageData.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="apiframeworktest.rc" />

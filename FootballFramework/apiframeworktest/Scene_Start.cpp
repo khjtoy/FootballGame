@@ -26,7 +26,7 @@ void Scene_Start::Enter()
 	SoundMgr::GetInst()->LoadSound(L"StartWhistleEff", false, L"Sound\\Whistle1Eff.wav");
 	SoundMgr::GetInst()->LoadSound(L"EndWhistleEff", false, L"Sound\\Whistle3Eff.wav");
 	SoundMgr::GetInst()->LoadSound(L"SighEff", false, L"Sound\\SighEff.wav");
-	SoundMgr::GetInst()->LoadSound(L"KoreaBgm", false, L"Sound\\KoreaBgm.mp3");
+	SoundMgr::GetInst()->LoadSound(L"KoreaBgm", true, L"Sound\\KoreaBgm.mp3");
 
 	SoundMgr::GetInst()->Stop(SOUND_CHANNEL::SC_BGM);
 	SoundMgr::GetInst()->Play(L"StartBGM");

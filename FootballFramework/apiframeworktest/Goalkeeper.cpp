@@ -30,8 +30,8 @@ Goalkeeper::Goalkeeper(float runSpeed,float diveSpeed)
 	m_diveSpeed = diveSpeed; 
 	// collider 새성
 	CreateCollider();
-	GetCollider()->SetScale(Vec2(20.f, 30.f));
-	GetCollider()->SetOffsetPos(Vec2(-10.f, -10.f));
+	GetCollider()->SetScale(Vec2(15.f, 30.f));
+	GetCollider()->SetOffsetPos(Vec2(-8.f, -10.f));
 
 	// FSM 초기화 및 설정 
 	m_stateMachine = new StateMachine(this);
@@ -207,6 +207,10 @@ bool Goalkeeper::CheckIdleDistance()
 bool Goalkeeper::CheckDive()
 {
 	if (this->GetDiveCollider()->GetTarget() == nullptr) return false;
+	Vec2 tPos = this->GetDiveCollider()->GetTarget()->GetPos();
+	Vec2 tpPos = this->GetDiveCollider()->GetTarget()->GetParent()->GetPos();
+	float l = (tpPos - tPos).Length();
+	if( l < 10) return false;
 
 	Vec2 targetPos = this->GetDiveCollider()->GetTarget()->GetPos();
 	if (targetPos.x >= GetPos().x - GetScale().x* 16 / 2 && targetPos.x <= GetPos().x ) return false;
