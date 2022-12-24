@@ -18,8 +18,8 @@ void StageMgr::Init()
 	m_stageDataMap.insert(make_pair(STAGE_TYPE::GHANA, new StageData(70.f, 400.f, 50.f)));
 	m_stageDataMap.insert(make_pair(STAGE_TYPE::JAPAN, new StageData(80.f, 500.f, 50.f)));
 	m_stageDataMap.insert(make_pair(STAGE_TYPE::USA, new StageData(90.f, 600.f, 60.f)));
-	m_stageDataMap.insert(make_pair(STAGE_TYPE::FRANCE, new StageData(200.f, 400.f, 70.f)));
-	m_stageDataMap.insert(make_pair(STAGE_TYPE::ARGENTINA, new StageData(130.f, 700.f, 90.f)));
+	m_stageDataMap.insert(make_pair(STAGE_TYPE::FRANCE, new StageData(150.f, 400.f, 70.f)));
+	m_stageDataMap.insert(make_pair(STAGE_TYPE::ARGENTINA, new StageData(110.f, 700.f, 90.f)));
 	
 	SetCurStageData(STAGE_TYPE::GHANA);
 }

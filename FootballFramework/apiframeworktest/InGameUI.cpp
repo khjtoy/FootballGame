@@ -86,6 +86,8 @@ void InGameUI::Update()
 
 	if ((winCount >= 3 || failCount >= 3) && KEY_TAP(KEY::SPACE))
 	{
+		SoundMgr::GetInst()->Stop(SOUND_CHANNEL::SC_BGM);
+		SoundMgr::GetInst()->Play(L"StartBGM");
 		ChangeScene(SCENE_TYPE::STAGE);
 	}
 }
