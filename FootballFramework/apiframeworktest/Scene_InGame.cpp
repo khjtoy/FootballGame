@@ -12,8 +12,8 @@
 #include "KeyMgr.h"
 #include "SceneMgr.h"
 #include "SoundMgr.h"
-
-#include "TestPlayer.h"
+#include "Goalkeeper.h"
+#include "DiveCollider.h"
 Scene_InGame::Scene_InGame()
 {
 }
@@ -44,27 +44,35 @@ void Scene_InGame::Enter()
 	pPObj->SetScale(Vec2(2.f,2.f));
 	AddObject(pPObj, GROUP_TYPE::PLAYER);
 
-	pObj = new Ball;
+	pObj = new Ball;                                                     
 	pObj->SetParent(pPObj);
 	pObj->SetPos(Vec2(Core::GetInst()->GetResolution().x / 2, Core::GetInst()->GetResolution().y / 2));
 	pObj->SetScale(Vec2(2.5f,2.5f));
 	AddObject(pObj, GROUP_TYPE::BALL);
 
-	// 디버그용 오브젝트
-	Object* testPlayer = new TestPlayer; 
-	testPlayer->SetPos(Vec2(Core::GetInst()->GetResolution().x / 2, (long)100));
-	//testPlayer->SetScale(Vec2(100.f, 100.f));
-	AddObject(testPlayer, GROUP_TYPE::TESTPLAYER);
+	// 골키퍼 오브젝트
+	Goalkeeper* goalkeeper = new Goalkeeper(30.f);
+	goalkeeper->SetName(L"Goalkeeper");
+	goalkeeper->SetFollower(pPObj);
+	goalkeeper->SetPos(Vec2(Core::GetInst()->GetResolution().x / 2 - 100, (long)100));
+	goalkeeper->SetScale(Vec2(2.f, 2.f));
+	AddObject(goalkeeper, GROUP_TYPE::AI);
 
-//	Object* pOtherPlayer = new Player(*(Player*)pObj);
-	/*Object* pOtherPlayer = pObj->Clone();
-	pOtherPlayer->SetPos(Vec2(Core::GetInst()->GetResolution().x / 2.f + 100.f, Core::GetInst()->GetResolution().y / 2.f));
-	AddObject(pOtherPlayer, GROUP_TYPE::PLAYER);*/
+	// 다이브 체크 콜라이더 오브젝트
+	DiveCollider* diveCol = new DiveCollider;
+	diveCol->SetName(L"DiveCollider");
+	diveCol->SetParent(goalkeeper);
+	//diveCol->SetPos(Vec2(Core::GetInst()->GetResolution().x / 2 - 100, (long)100));
+	diveCol->SetScale(Vec2(1.f, 30.f));
+	AddObject(diveCol, GROUP_TYPE::COLLIDER);
+	goalkeeper->SetDiveCollider(diveCol);
  
 
 	// 충돌 지정
 	CollisionMgr::GetInst()->CheckGroup(GROUP_TYPE::BALL, GROUP_TYPE::Goal);
-
+	CollisionMgr::GetInst()->CheckGroup(GROUP_TYPE::BALL, GROUP_TYPE::AI);
+	CollisionMgr::GetInst()->CheckGroup(GROUP_TYPE::AI, GROUP_TYPE::PLAYER);
+	CollisionMgr::GetInst()->CheckGroup(GROUP_TYPE::COLLIDER, GROUP_TYPE::BALL);
 }
 
 void Scene_InGame::Exit()

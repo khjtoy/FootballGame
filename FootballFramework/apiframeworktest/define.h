@@ -84,10 +84,8 @@ enum class	STATE_TYPE
 {
 	IDLE, 
 	RUN, 
-<<<<<<< HEAD
 	DIVE, 	
-	TACKLE
-=======
+	TACKLE,
 	ACT, // °ø°Ý¼ö¸é ½¸, °ñÅ°ÆÛ¸é ´ÙÀÌºù 
 };
 
@@ -95,5 +93,4 @@ enum class Dir
 {
 	UP,
 	DOWN
->>>>>>> KHJWork
 };
