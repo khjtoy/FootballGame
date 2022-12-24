@@ -1,6 +1,8 @@
 #pragma once
 #include "Object.h"
 class Image;
+class Flag;
+class VSIcon;
 class InGameUI :
     public Object
 {
@@ -12,8 +14,11 @@ private:
     virtual void Render(HDC _dc) override;
     CLONE(InGameUI);
 private:
-    Image* koreaImg;
-    Image* opponentImg;
-    Image* vsImg;
+    Flag* flag1;
+    Flag* flag2;
+    VSIcon* vsIcon;
+    wstring explation;
+    wstring round;
+    bool gameStart = false;
 };
 

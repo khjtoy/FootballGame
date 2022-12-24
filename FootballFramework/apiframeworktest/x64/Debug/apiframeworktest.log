@@ -1,2 +1,25 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(513,5): warning MSB8028: 중간 디렉터리(x64\Debug\)에 다른 프로젝트(apiframeworktest.vcxproj)에서 공유하는 파일이 포함되어 있습니다.  이로 인해 잘못된 정리 및 다시 빌드 동작이 수행될 수 있습니다.
+  Goalkeeper.cpp
+C:\Football\FootballFramework\apiframeworktest\Goalkeeper.cpp(109,66): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Football\FootballFramework\apiframeworktest\Goalkeeper.cpp(110,66): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Football\FootballFramework\apiframeworktest\Goalkeeper.cpp(111,66): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Football\FootballFramework\apiframeworktest\Goalkeeper.cpp(112,67): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Football\FootballFramework\apiframeworktest\Goalkeeper.cpp(127,9): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Football\FootballFramework\apiframeworktest\Goalkeeper.cpp(126,9): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Football\FootballFramework\apiframeworktest\Goalkeeper.cpp(125,9): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Football\FootballFramework\apiframeworktest\Goalkeeper.cpp(124,21): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Football\FootballFramework\apiframeworktest\Goalkeeper.cpp(133,9): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Football\FootballFramework\apiframeworktest\Goalkeeper.cpp(132,9): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Football\FootballFramework\apiframeworktest\Goalkeeper.cpp(131,9): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Football\FootballFramework\apiframeworktest\Goalkeeper.cpp(130,21): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Football\FootballFramework\apiframeworktest\Goalkeeper.cpp(137,42): warning C4244: '인수': 'const float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Football\FootballFramework\apiframeworktest\Goalkeeper.cpp(137,27): warning C4244: '인수': 'const float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Football\FootballFramework\apiframeworktest\Goalkeeper.cpp(138,70): warning C4244: '인수': 'const float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Football\FootballFramework\apiframeworktest\Goalkeeper.cpp(138,40): warning C4244: '인수': 'const float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Football\FootballFramework\apiframeworktest\Goalkeeper.cpp(140,55): warning C4244: '인수': 'const float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Football\FootballFramework\apiframeworktest\Goalkeeper.cpp(140,27): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Football\FootballFramework\apiframeworktest\Goalkeeper.cpp(141,34): warning C4244: '인수': 'const float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Football\FootballFramework\apiframeworktest\Goalkeeper.cpp(141,22): warning C4244: '인수': 'const float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Football\FootballFramework\apiframeworktest\Goalkeeper.cpp(232): warning C4715: 'Goalkeeper::CheckIsBallRight': 모든 제어 경로에서 값을 반환하지는 않습니다.
+C:\Football\FootballFramework\apiframeworktest\Object.h(22): warning C4172: 지역 변수 또는 임시의 주소를 반환하고 있습니다.
   apiframeworktest.vcxproj -> C:\Football\FootballFramework\OutPut\bin_debug\Gamep_winapiframework.exe

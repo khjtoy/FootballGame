@@ -96,9 +96,11 @@ void Flag::Render(HDC _dc)
 		SetTextColor(_dc, RGB(0, 0, 0));
 
 		TextOut(_dc, 830, 300, rule.c_str(), rule.length());
-		Component_Render(_dc);
 
 		TextOut(_dc, 830, 350, rule2.c_str(), rule2.length());
+
+		SelectObject(_dc, oldFont);
+		DeleteObject(hFont);
 	}
 	Component_Render(_dc);
 }

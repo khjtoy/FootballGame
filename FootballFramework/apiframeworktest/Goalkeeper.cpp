@@ -70,31 +70,31 @@ Goalkeeper::~Goalkeeper()
 
 void Goalkeeper::Update()
 {
-	if (KEY_TAP(KEY::A))
-	{
-		m_stateMachine->ChangeState(STATE_TYPE::IDLE);
-	}
-	else if (KEY_TAP(KEY::S))
-	{
-		m_stateMachine->ChangeState(STATE_TYPE::RUN);
-	}
-	else if (KEY_TAP(KEY::D))
-	{
-		m_stateMachine->ChangeState(STATE_TYPE::DIVE);
-	}
-	else if (KEY_TAP(KEY::Q))
-	{
-		PlayLeftDivingAnim();
-	}
-	else if (KEY_TAP(KEY::W))
-	{
-		PlayRightDivingAnim();
-	}
-	else if (KEY_TAP(KEY::E))
-	{
-		//PlayRunAnim();
-		PlayTackleAnim();
-	}
+	//if (KEY_TAP(KEY::A))
+	//{
+	//	m_stateMachine->ChangeState(STATE_TYPE::IDLE);
+	//}
+	//else if (KEY_TAP(KEY::S))
+	//{
+	//	m_stateMachine->ChangeState(STATE_TYPE::RUN);
+	//}
+	//else if (KEY_TAP(KEY::D))
+	//{
+	//	m_stateMachine->ChangeState(STATE_TYPE::DIVE);
+	//}
+	//else if (KEY_TAP(KEY::Q))
+	//{
+	//	PlayLeftDivingAnim();
+	//}
+	//else if (KEY_TAP(KEY::W))
+	//{
+	//	PlayRightDivingAnim();
+	//}
+	//else if (KEY_TAP(KEY::E))
+	//{
+	//	//PlayRunAnim();
+	//	PlayTackleAnim();
+	//}
 	m_stateMachine->Update();
 	GetAnimator()->Update();
 
