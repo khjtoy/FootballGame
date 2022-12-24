@@ -1,34 +1,17 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(499,5): warning MSB8004: Output 디렉터리가 슬래시로 끝나지 않습니다. Output 디렉터리의 적절한 평가를 허용하는 데 필요하므로 이 빌드 인스턴스에서 슬래시를 추가합니다.
 C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(513,5): warning MSB8028: 중간 디렉터리(x64\Release\)에 다른 프로젝트(apiframeworktest.vcxproj)에서 공유하는 파일이 포함되어 있습니다.  이로 인해 잘못된 정리 및 다시 빌드 동작이 수행될 수 있습니다.
-  Animation.cpp
-  Animator.cpp
-  Collider.cpp
-  CollisionMgr.cpp
-  Core.cpp
-C:\Football\FootballFramework\apiframeworktest\SoundMgr.h(2,10): fatal error C1083: 포함 파일을 열 수 없습니다. 'fmod.hpp': No such file or directory
-  EventMgr.cpp
-  func.cpp
-  Image.cpp
-  KeyMgr.cpp
-  main.cpp
-  Object.cpp
-  PathMgr.cpp
-C:\Football\FootballFramework\apiframeworktest\PathMgr.cpp(17,35): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  Player.cpp
-C:\Football\FootballFramework\apiframeworktest\Player.cpp(29,20): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  Res.cpp
-  ResMgr.cpp
-  Scene.cpp
-  SceneMgr.cpp
-  Scene_01.cpp
-  Scene_Start.cpp
-C:\Football\FootballFramework\apiframeworktest\SoundMgr.h(2,10): fatal error C1083: 포함 파일을 열 수 없습니다. 'fmod.hpp': No such file or directory
-  SelectGDI.cpp
-  Sound.cpp
-  SoundMgr.cpp
-C:\Football\FootballFramework\apiframeworktest\SoundMgr.h(2,10): fatal error C1083: 포함 파일을 열 수 없습니다. 'fmod.hpp': No such file or directory
-  Staduim.cpp
-  TimeMgr.cpp
-  Vec2.cpp
-C:\Football\FootballFramework\apiframeworktest\Vec2.cpp(26,5): warning C4244: '초기화 중': 'long'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Football\FootballFramework\apiframeworktest\Vec2.cpp(27,5): warning C4244: '초기화 중': 'long'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  InGameUI.cpp
+C:\Football\FootballFramework\apiframeworktest\InGameUI.cpp(105,59): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Football\FootballFramework\apiframeworktest\InGameUI.cpp(106,61): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Football\FootballFramework\apiframeworktest\InGameUI.cpp(110,61): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Football\FootballFramework\apiframeworktest\InGameUI.cpp(111,61): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Football\FootballFramework\apiframeworktest\InGameUI.cpp(118,63): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Football\FootballFramework\apiframeworktest\InGameUI.cpp(120,63): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  pch.cpp
+  Scene_InGame.cpp
+  코드를 생성하고 있습니다.
+  0 of 1512 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  코드를 생성했습니다.
+  apiframeworktest.vcxproj -> C:\Football\FootballFramework\OutPut\bin\Gamep_winapiframework.exe

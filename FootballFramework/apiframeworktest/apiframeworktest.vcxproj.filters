@@ -14,6 +14,7 @@
     <ClCompile Include="Flag.cpp" />
     <ClCompile Include="func.cpp" />
     <ClCompile Include="Goal.cpp" />
+    <ClCompile Include="GoalCircle.cpp" />
     <ClCompile Include="GoalText.cpp" />
     <ClCompile Include="IdleState.cpp" />
     <ClCompile Include="Image.cpp" />
@@ -22,6 +23,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="BWindow.cpp" />
     <ClCompile Include="Object.cpp" />
+    <ClCompile Include="Outline.cpp" />
     <ClCompile Include="PathMgr.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Res.cpp" />
@@ -36,6 +38,8 @@
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="SoundMgr.cpp" />
     <ClCompile Include="Staduim.cpp" />
+    <ClCompile Include="StageData.cpp" />
+    <ClCompile Include="StageMgr.cpp" />
     <ClCompile Include="StartPlayer.cpp" />
     <ClCompile Include="StartSceneText.cpp" />
     <ClCompile Include="State.cpp" />
@@ -43,16 +47,10 @@
     <ClCompile Include="TackleState.cpp" />
     <ClCompile Include="Goalkeeper.cpp" />
     <ClCompile Include="TimeMgr.cpp" />
+    <ClCompile Include="TouchLine.cpp" />
     <ClCompile Include="Vec2.cpp" />
     <ClCompile Include="VSIcon.cpp" />
-<<<<<<< HEAD
-    <ClCompile Include="GoalCircle.cpp" />
-    <ClCompile Include="Outline.cpp" />
-    <ClCompile Include="TouchLine.cpp" />
-=======
-    <ClCompile Include="StageMgr.cpp" />
-    <ClCompile Include="StageData.cpp" />
->>>>>>> origin/KPG
+    <ClCompile Include="pch.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
@@ -71,12 +69,14 @@
     <ClInclude Include="framework.h" />
     <ClInclude Include="func.h" />
     <ClInclude Include="Goal.h" />
+    <ClInclude Include="GoalCircle.h" />
     <ClInclude Include="GoalText.h" />
     <ClInclude Include="IdleState.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="InGameUI.h" />
     <ClInclude Include="KeyMgr.h" />
     <ClInclude Include="Object.h" />
+    <ClInclude Include="Outline.h" />
     <ClInclude Include="PathMgr.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Player.h" />
@@ -93,6 +93,8 @@
     <ClInclude Include="Sound.h" />
     <ClInclude Include="SoundMgr.h" />
     <ClInclude Include="Staduim.h" />
+    <ClInclude Include="StageData.h" />
+    <ClInclude Include="StageMgr.h" />
     <ClInclude Include="StartPlayer.h" />
     <ClInclude Include="StartSceneText.h" />
     <ClInclude Include="State.h" />
@@ -101,16 +103,9 @@
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Goalkeeper.h" />
     <ClInclude Include="TimeMgr.h" />
+    <ClInclude Include="TouchLine.h" />
     <ClInclude Include="Vec2.h" />
     <ClInclude Include="VSIcon.h" />
-<<<<<<< HEAD
-    <ClInclude Include="GoalCircle.h" />
-    <ClInclude Include="Outline.h" />
-    <ClInclude Include="TouchLine.h" />
-=======
-    <ClInclude Include="StageMgr.h" />
-    <ClInclude Include="StageData.h" />
->>>>>>> origin/KPG
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="apiframeworktest.rc" />
