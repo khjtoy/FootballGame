@@ -21,7 +21,7 @@ StateMachine::~StateMachine()
 	if (m_nowState != nullptr)
 		delete m_nowState;
 }
-
+	
 void StateMachine::Update()
 {
 	if (m_nowState != nullptr)

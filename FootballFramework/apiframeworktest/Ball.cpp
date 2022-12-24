@@ -84,14 +84,20 @@ void Ball::Render(HDC _dc)
 
 void Ball::EnterCollision(Collider* _pOther)
 {
-	speedX = 0;
-	speedY = 0;
+	//speedX = 0;
+	//speedY = 0;
 	Object* pOtherObj = _pOther->GetObj();
 	if (pOtherObj->GetName() == L"Goal")
 	{
 		speedX = 0;
 		speedY = 0;
 		CreateGoalText();
+	}
+	if (pOtherObj->GetName() == L"Goalkeeper")
+	{
+		speedX = 0;
+		speedY = 0;
+		isCheck = false;
 	}
 }
 

@@ -95,3 +95,13 @@ void Player::Render(HDC _dc)
 	}
 	Component_Render(_dc);
 }
+
+void Player::EnterCollision(Collider* collider)
+{
+	Object* obj = collider->GetObj();
+	if (obj->GetName() == L"Goalkeeper")
+	{
+		// ∏ÿ√Á 
+		hSpeed = 0;
+	}
+}
