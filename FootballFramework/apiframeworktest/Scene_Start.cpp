@@ -1,20 +1,16 @@
 #include "pch.h"
 #include "Scene_Start.h"
-#include "Object.h"
-#include "Player.h"
-#include "Staduim.h"
-#include "Goal.h"
-#include "Ball.h"
-#include "Core.h"
-#include "Image.h"
-#include "PathMgr.h"
-#include "CollisionMgr.h"
 #include "KeyMgr.h"
-#include "SceneMgr.h"
-#include "SoundMgr.h"
+#include "Staduim.h"
+#include "StartPlayer.h"
+#include "StartSceneText.h"
+#include "Core.h"
 
+<<<<<<< HEAD
 #include "Goalkeeper.h"
 #include "DiveCollider.h"
+=======
+>>>>>>> KHJWork
 Scene_Start::Scene_Start()
 {
 }
@@ -22,23 +18,30 @@ Scene_Start::Scene_Start()
 Scene_Start::~Scene_Start()
 {
 }
+
 void Scene_Start::Enter()
 {
-	SoundMgr::GetInst()->LoadSound(L"BGM", true, L"Sound\\pianobgm.wav");
-	SoundMgr::GetInst()->Play(L"BGM");
-
 	// 맵 그리기
 	Object* pObj = new Staduim;
 	pObj->SetPos(Vec2(Core::GetInst()->GetResolution().x / 2, Core::GetInst()->GetResolution().y / 2 + 110));
 	pObj->SetScale(Vec2(0.7f, 0.7f));
-	AddObject(pObj, GROUP_TYPE::MAP);
+	AddObject
+    (pObj, GROUP_TYPE::MAP);
 
-	pObj = new Goal;
-	pObj->SetName(L"Goal");
-	pObj->SetPos(Vec2(Core::GetInst()->GetResolution().x / 2 - 80, Core::GetInst()->GetResolution().y / 8 - 10));
-	pObj->SetScale(Vec2(2.f, 2.f));
-	AddObject(pObj, GROUP_TYPE::Goal);
+	// 사람들 생성
+	for (int i = -200; i <= 200; i = i +=  100)
+	{
+		int dir = rand() % 2;
+		int speed = (rand() % 51) + 50;
+		StartPlayer* pObj = new StartPlayer;
+		pObj->SetDir(dir == 1 ? 1 : -1);
+		pObj->SetSpeed(speed);
+		pObj->SetPos(Vec2(Core::GetInst()->GetResolution().x / 2, Core::GetInst()->GetResolution().y / 2 + i));
+		pObj->SetScale(Vec2(2.f, 2.f));
+		AddObject(pObj, GROUP_TYPE::PLAYER);
+	}
 
+<<<<<<< HEAD
 	// Object 추가
 	Object* pPObj = new Player;
 	pPObj->SetPos(Vec2(Core::GetInst()->GetResolution().x/2, Core::GetInst()->GetResolution().y/2));
@@ -82,19 +85,23 @@ void Scene_Start::Enter()
 	CollisionMgr::GetInst()->CheckGroup(GROUP_TYPE::BALL, GROUP_TYPE::AI);
 	CollisionMgr::GetInst()->CheckGroup(GROUP_TYPE::AI, GROUP_TYPE::PLAYER);
 	CollisionMgr::GetInst()->CheckGroup(GROUP_TYPE::COLLIDER, GROUP_TYPE::BALL);
+=======
+
+	pObj = new StartSceneText;
+	AddObject(pObj, GROUP_TYPE::UI);
+>>>>>>> KHJWork
 }
 
 void Scene_Start::Exit()
 {
 	DeleteAll();
-	CollisionMgr::GetInst()->CheckReset();
 }
 
 void Scene_Start::Update()
-{  
+{
 	Scene::Update();
 	if (KEY_TAP(KEY::ENTER))
 	{
-		ChangeScene(SCENE_TYPE::SCENE_01);
+		ChangeScene(SCENE_TYPE::STAGE);
 	}
 }

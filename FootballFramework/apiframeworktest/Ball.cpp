@@ -48,11 +48,11 @@ void Ball::Update()
 	}
 	if (KEY_AWAY(KEY::SPACE))
 	{
-		if (KEY_HOLD(KEY::LEFT) || KEY_AWAY(KEY::LEFT))
+		if (KEY_TAP(KEY::LEFT) || KEY_HOLD(KEY::LEFT) || KEY_AWAY(KEY::LEFT))
 		{
 			rot = -1;
 		}
-		else if (KEY_HOLD(KEY::RIGHT) || KEY_AWAY(KEY::RIGHT))
+		else if (KEY_TAP(KEY::RIGHT) || KEY_HOLD(KEY::RIGHT) || KEY_AWAY(KEY::RIGHT))
 		{
 			rot = 1;
 		}
@@ -98,7 +98,7 @@ void Ball::EnterCollision(Collider* _pOther)
 void Ball::CreateGoalText()
 {
 	GoalText* pObj = new GoalText;
-	pObj->SetPos(Vec2(Core::GetInst()->GetResolution().x / 2 - 80, Core::GetInst()->GetResolution().y / 8 - 10));
-	pObj->SetScale(Vec2(2.f, 2.f));
+	pObj->SetPos(Vec2(Core::GetInst()->GetResolution().x / 2 - 80, Core::GetInst()->GetResolution().y / 8 + 100));
+	pObj->SetScale(Vec2(4.f, 4.f));
 	CreateObject(pObj, GROUP_TYPE::UI);
 }
