@@ -1,6 +1,7 @@
 #pragma once
 #include "Object.h"
 class Player;
+class GoalText;
 class Ball :
     public Object
 {
@@ -18,9 +19,16 @@ private:
     int rot;
     float speedX;
     float speedY;
+    float curDT;
     Vec2 ballPos;
     bool isCheck = false;
     bool isBlocked = false;
+    bool isShoot = false;
+    GoalText* pObj;
 private:
     void CreateGoalText();
+public:
+    bool GetShoot() { return isShoot; }
+    void SetShoot(bool value) { isShoot = value; }
+    GoalText* MyGoldText() { return pObj; }
 };

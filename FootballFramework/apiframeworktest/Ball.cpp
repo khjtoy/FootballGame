@@ -33,6 +33,8 @@ Ball::Ball()
 
 Ball::~Ball()
 {
+	//if (pObj != nullptr)
+		DeleteObject(pObj);
 }
 
 void Ball::Update()
@@ -99,6 +101,7 @@ void Ball::EnterCollision(Collider* _pOther)
 		speedY = 0;
 		CreateGoalText();
 		SoundMgr::GetInst()->Play(L"GoalEff");
+		isShoot = true;
 	}
 	if (pOtherObj->GetName() == L"Goalkeeper")
 	{
@@ -107,12 +110,13 @@ void Ball::EnterCollision(Collider* _pOther)
 		isCheck = false;
 		isBlocked = true; 
 		SoundMgr::GetInst()->Play(L"SighEff");
+		isShoot = true;
 	}
 }
 
 void Ball::CreateGoalText()
 {
-	GoalText* pObj = new GoalText;
+	pObj = new GoalText;
 	pObj->SetPos(Vec2(Core::GetInst()->GetResolution().x / 2 - 80, Core::GetInst()->GetResolution().y / 8 + 100));
 	pObj->SetScale(Vec2(4.f, 4.f));
 	CreateObject(pObj, GROUP_TYPE::UI);

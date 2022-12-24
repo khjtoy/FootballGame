@@ -7,10 +7,80 @@
 #include "VSIcon.h"
 #include "Core.h"
 #include "KeyMgr.h"
+#include "Player.h"
+#include "Ball.h"
+#include "Goalkeeper.h"
+#include "DiveCollider.h"
+#include "TimeMgr.h"
+#include "GoalText.h"
 
 InGameUI::InGameUI()
 	:explation(L"Press S to Start"),
-	 round(L"Round 1")
+	 round(1)
+{
+	UISpawn();
+}
+
+InGameUI::~InGameUI()
+{
+}
+
+void InGameUI::Update()
+{
+	if (KEY_TAP(KEY::S) && !gameStart)
+	{
+		gameStart = true;
+		DeleteObject(flag1);
+		DeleteObject(flag2);
+		DeleteObject(vsIcon);
+		if (myGoldText != nullptr)
+		{
+			DeleteObject(myGoldText);
+		}
+		IngameSpawn();
+	}
+
+	if (gameStart)
+	{
+		if (pBObj->GetShoot())
+		{
+			gameStart = false;
+			round++;
+			myGoldText = pBObj->MyGoldText();
+			DeleteObject(pPObj);
+			DeleteObject(pBObj);
+			DeleteObject(goalkeeper);
+			DeleteObject(diveCol);
+			UISpawn();
+		}
+	}
+}
+
+void InGameUI::Render(HDC _dc)
+{
+	if (!gameStart)
+	{
+		HFONT hFont = CreateFont(30, 0, 0, 0, 0, 0, 0, 0, HANGEUL_CHARSET, 0, 0, 0, VARIABLE_PITCH, TEXT("궁서"));
+
+		HFONT oldFont = (HFONT)SelectObject(_dc, hFont);
+		SetBkMode(_dc, TRANSPARENT);
+
+		SetTextColor(_dc, RGB(0, 0, 0));
+
+		wstring roundText = L"Round " + to_wstring(round);
+
+		TextOut(_dc, 460, 250, roundText.c_str(), roundText.length());
+
+		TextOut(_dc, 400, 420, explation.c_str(), explation.length());
+
+		SelectObject(_dc, oldFont);
+		SetBkMode(_dc, OPAQUE);
+		DeleteObject(hFont);
+	}
+	Component_Render(_dc);
+}
+
+void InGameUI::UISpawn()
 {
 	// 대한민국 국기
 	flag1 = new Flag;
@@ -37,39 +107,35 @@ InGameUI::InGameUI()
 	CreateObject(vsIcon, GROUP_TYPE::UI);
 }
 
-InGameUI::~InGameUI()
+void InGameUI::IngameSpawn()
 {
+	pPObj = new Player;
+	pPObj->SetPos(Vec2(Core::GetInst()->GetResolution().x / 2, Core::GetInst()->GetResolution().y / 2));
+	pPObj->SetScale(Vec2(2.f, 2.f));
+	CreateObject(pPObj, GROUP_TYPE::PLAYER);
+
+	pBObj = new Ball;
+	pBObj->SetParent(pPObj);
+	pBObj->SetPos(Vec2(Core::GetInst()->GetResolution().x / 2, Core::GetInst()->GetResolution().y / 2));
+	pBObj->SetScale(Vec2(2.5f, 2.5f));
+	pBObj->SetName(L"Ball");
+	CreateObject(pBObj, GROUP_TYPE::BALL);
+
+	// 골키퍼 오브젝트
+	goalkeeper = new Goalkeeper(30.f, 600.f);
+	goalkeeper->SetName(L"Goalkeeper");
+	goalkeeper->SetFollower(pPObj);
+	goalkeeper->SetPos(Vec2(Core::GetInst()->GetResolution().x / 2 - 100, (long)100));
+	goalkeeper->SetScale(Vec2(2.f, 2.f));
+	CreateObject(goalkeeper, GROUP_TYPE::AI);
+	// 다이브 체크 콜라이더 오브젝트
+	diveCol = new DiveCollider(60.f);
+	diveCol->SetName(L"DiveCollider");
+	diveCol->SetParent(goalkeeper);
+	//diveCol->SetPos(Vec2(Core::GetInst()->GetResolution().x / 2 - 100, (long)100));
+	diveCol->SetScale(Vec2(1.f, 30.f));
+	CreateObject(diveCol, GROUP_TYPE::COLLIDER);
+	goalkeeper->SetDiveCollider(diveCol);
 }
 
-void InGameUI::Update()
-{
-	if (KEY_TAP(KEY::S) && !gameStart)
-	{
-		gameStart = true;
-		DeleteObject(flag1);
-		DeleteObject(flag2);
-		DeleteObject(vsIcon);
-	}
-}
 
-void InGameUI::Render(HDC _dc)
-{
-	if (!gameStart)
-	{
-		HFONT hFont = CreateFont(30, 0, 0, 0, 0, 0, 0, 0, HANGEUL_CHARSET, 0, 0, 0, VARIABLE_PITCH, TEXT("궁서"));
-
-		HFONT oldFont = (HFONT)SelectObject(_dc, hFont);
-		SetBkMode(_dc, TRANSPARENT);
-
-		SetTextColor(_dc, RGB(0, 0, 0));
-
-		TextOut(_dc, 460, 250, round.c_str(), round.length());
-
-		TextOut(_dc, 400, 420, explation.c_str(), explation.length());
-
-		SelectObject(_dc, oldFont);
-		SetBkMode(_dc, OPAQUE);
-		DeleteObject(hFont);
-	}
-	Component_Render(_dc);
-}

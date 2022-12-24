@@ -1,10 +1,8 @@
 #include "pch.h"
 #include "Scene_InGame.h"
 #include "Object.h"
-#include "Player.h"
 #include "Staduim.h"
 #include "Goal.h"
-#include "Ball.h"
 #include "InGameUI.h"
 #include "Core.h"
 #include "Image.h"
@@ -13,8 +11,6 @@
 #include "KeyMgr.h"
 #include "SceneMgr.h"
 #include "SoundMgr.h"
-#include "Goalkeeper.h"
-#include "DiveCollider.h"
 Scene_InGame::Scene_InGame()
 {
 }
@@ -41,35 +37,6 @@ void Scene_InGame::Enter()
 	AddObject(pObj, GROUP_TYPE::Goal);
 
 	// Object 추가
-	Object* pPObj = new Player;
-	pPObj->SetPos(Vec2(Core::GetInst()->GetResolution().x/2, Core::GetInst()->GetResolution().y/2));
-	pPObj->SetScale(Vec2(2.f,2.f));
-	AddObject(pPObj, GROUP_TYPE::PLAYER);
-
-	pObj = new Ball;                                                     
-	pObj->SetParent(pPObj);
-	pObj->SetPos(Vec2(Core::GetInst()->GetResolution().x / 2, Core::GetInst()->GetResolution().y / 2));
-	pObj->SetScale(Vec2(2.5f,2.5f));
-	pObj->SetName(L"Ball");
-	AddObject(pObj, GROUP_TYPE::BALL);
-
-	// 골키퍼 오브젝트
-	Goalkeeper* goalkeeper = new Goalkeeper(30.f,600.f);
-	goalkeeper->SetName(L"Goalkeeper");
-	goalkeeper->SetFollower(pPObj);
-	goalkeeper->SetPos(Vec2(Core::GetInst()->GetResolution().x / 2 - 100, (long)100));
-	goalkeeper->SetScale(Vec2(2.f, 2.f));
-	AddObject(goalkeeper, GROUP_TYPE::AI);
-
-	// 다이브 체크 콜라이더 오브젝트
-	DiveCollider* diveCol = new DiveCollider(60.f);
-	diveCol->SetName(L"DiveCollider");
-	diveCol->SetParent(goalkeeper);
-	//diveCol->SetPos(Vec2(Core::GetInst()->GetResolution().x / 2 - 100, (long)100));
-	diveCol->SetScale(Vec2(1.f, 30.f));
-	AddObject(diveCol, GROUP_TYPE::COLLIDER);
-	goalkeeper->SetDiveCollider(diveCol);
-
 	pObj = new InGameUI();
 	AddObject(pObj, GROUP_TYPE::UI);
  

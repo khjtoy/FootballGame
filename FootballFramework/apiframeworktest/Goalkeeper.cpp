@@ -57,15 +57,15 @@ Goalkeeper::Goalkeeper(float runSpeed,float diveSpeed)
 Goalkeeper::~Goalkeeper()
 {
 	if (m_stateMachine != nullptr)
-		delete m_stateMachine;
+		DeleteObject(m_stateMachine);
 	if (m_idleState != nullptr)
-		delete m_idleState;
+		DeleteObject(m_idleState);
 	if (m_runState != nullptr)
-		delete m_runState;
+		DeleteObject(m_runState);
 	if (m_diveState != nullptr)
-		delete m_diveState;
+		DeleteObject(m_diveState);
 	if (m_diveCollider != nullptr)
-		delete m_diveCollider;
+		DeleteObject(m_diveCollider);
 }
 
 void Goalkeeper::Update()
