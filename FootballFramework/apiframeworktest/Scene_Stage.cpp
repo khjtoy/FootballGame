@@ -41,5 +41,7 @@ void Scene_Stage::Update()
 	{
 		ChangeScene(SCENE_TYPE::INGAME);
 		SoundMgr::GetInst()->Play(L"SelectEff");
+		// 무엇을 선택했는지 기억 
+		// flags[curIndex]
 	}
 }

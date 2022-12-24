@@ -45,9 +45,14 @@
     <ClCompile Include="TimeMgr.cpp" />
     <ClCompile Include="Vec2.cpp" />
     <ClCompile Include="VSIcon.cpp" />
+<<<<<<< HEAD
     <ClCompile Include="GoalCircle.cpp" />
     <ClCompile Include="Outline.cpp" />
     <ClCompile Include="TouchLine.cpp" />
+=======
+    <ClCompile Include="StageMgr.cpp" />
+    <ClCompile Include="StageData.cpp" />
+>>>>>>> origin/KPG
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
@@ -98,9 +103,14 @@
     <ClInclude Include="TimeMgr.h" />
     <ClInclude Include="Vec2.h" />
     <ClInclude Include="VSIcon.h" />
+<<<<<<< HEAD
     <ClInclude Include="GoalCircle.h" />
     <ClInclude Include="Outline.h" />
     <ClInclude Include="TouchLine.h" />
+=======
+    <ClInclude Include="StageMgr.h" />
+    <ClInclude Include="StageData.h" />
+>>>>>>> origin/KPG
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="apiframeworktest.rc" />

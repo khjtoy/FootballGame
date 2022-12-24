@@ -7,6 +7,8 @@
 #include "Core.h"
 #include "Arrow.h"
 #include "SoundMgr.h"
+#include "StageMgr.h"
+
 Flag::Flag()
 	:curIndex(0),
 	 check(false),
@@ -55,6 +57,7 @@ void Flag::Update()
 				SetIndexImage();
 				arrowUP->CheckAlpha(curIndex);
 				arrowDown->CheckAlpha(curIndex);
+				StageMgr::GetInst()->SetCurStageData((STAGE_TYPE)curIndex);
 				SoundMgr::GetInst()->Play(L"CursorEff");
 			}
 		}
@@ -66,6 +69,7 @@ void Flag::Update()
 				SetIndexImage();
 				arrowUP->CheckAlpha(curIndex);
 				arrowDown->CheckAlpha(curIndex);
+				StageMgr::GetInst()->SetCurStageData((STAGE_TYPE)curIndex);
 				SoundMgr::GetInst()->Play(L"CursorEff");
 			}
 		}

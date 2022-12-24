@@ -30,8 +30,8 @@ Goalkeeper::Goalkeeper(float runSpeed,float diveSpeed)
 	m_diveSpeed = diveSpeed; 
 	// collider 새성
 	CreateCollider();
-	GetCollider()->SetScale(Vec2(20.f, 30.f));
-	GetCollider()->SetOffsetPos(Vec2(-10.f, -10.f));
+	GetCollider()->SetScale(Vec2(15.f, 30.f));
+	GetCollider()->SetOffsetPos(Vec2(-8.f, -10.f));
 
 	// FSM 초기화 및 설정 
 	m_stateMachine = new StateMachine(this);
@@ -105,40 +105,40 @@ void Goalkeeper::Render(HDC _dc)
 	Component_Render(_dc);
 
 	// 디버그용 코드 시작 
-	wstring curStateName = m_stateMachine->GetCurStateName();
-	TextOut(_dc, 10, 10, curStateName.c_str(), curStateName.length()); // 현재 상태 이름 
-	TextOut(_dc, 10, 40, m_debugText1.c_str(), m_debugText1.length()); // Enter
-	TextOut(_dc, 10, 70, m_debugText2.c_str(), m_debugText2.length()); // Stay
-	TextOut(_dc, 10, 200, m_debugText3.c_str(), m_debugText3.length()); // Exit
-	if (m_diveCollider->GetIsCollision())
-	{
-		TextOut(_dc, 10, 120, L"충돌", 2);
-	}
+	//wstring curStateName = m_stateMachine->GetCurStateName();
+	//TextOut(_dc, 10, 10, curStateName.c_str(), curStateName.length()); // 현재 상태 이름 
+	//TextOut(_dc, 10, 40, m_debugText1.c_str(), m_debugText1.length()); // Enter
+	//TextOut(_dc, 10, 70, m_debugText2.c_str(), m_debugText2.length()); // Stay
+	//TextOut(_dc, 10, 200, m_debugText3.c_str(), m_debugText3.length()); // Exit
+	//if (m_diveCollider->GetIsCollision())
+	//{
+	//	TextOut(_dc, 10, 120, L"충돌", 2);
+	//}
 
-	PEN_TYPE ePen = PEN_TYPE::RED;
-	SelectGDI p(_dc, ePen);
-	SelectGDI b(_dc, BRUSH_TYPE::HOLLOW);
+	//PEN_TYPE ePen = PEN_TYPE::RED;
+	//SelectGDI p(_dc, ePen);
+	//SelectGDI b(_dc, BRUSH_TYPE::HOLLOW);
 
-	Vec2 pos = GetOrigin();
-	// 멈추는 범위 디버그
-	Ellipse(_dc, pos.x - m_idleDistance,
-		pos.y + m_idleDistance,
-		pos.x + m_idleDistance,
-		pos.y - m_idleDistance);
+	//Vec2 pos = GetOrigin();
+	//// 멈추는 범위 디버그
+	//Ellipse(_dc, pos.x - m_idleDistance,
+	//	pos.y + m_idleDistance,
+	//	pos.x + m_idleDistance,
+	//	pos.y - m_idleDistance);
 
-	// 태클 범위 디버그
-	Ellipse(_dc, pos.x - m_tackleDistance,
-		pos.y + m_tackleDistance,
-		pos.x + m_tackleDistance,
-		pos.y - m_tackleDistance);
+	//// 태클 범위 디버그
+	//Ellipse(_dc, pos.x - m_tackleDistance,
+	//	pos.y + m_tackleDistance,
+	//	pos.x + m_tackleDistance,
+	//	pos.y - m_tackleDistance);
 
 
-	// 골키퍼 포지션 -> 플레이어 포지션 
-	MoveToEx(_dc, GetOrigin().x, GetOrigin().y, NULL);
-	LineTo(_dc, GetFollower()->GetOrigin().x, GetFollower()->GetOrigin().y);
+	//// 골키퍼 포지션 -> 플레이어 포지션 
+	//MoveToEx(_dc, GetOrigin().x, GetOrigin().y, NULL);
+	//LineTo(_dc, GetFollower()->GetOrigin().x, GetFollower()->GetOrigin().y);
 
-	MoveToEx(_dc, GetPos().x - GetScale().x * 8, GetPos().y, NULL); 
-	LineTo(_dc, GetPos().x, GetPos().y); 
+	//MoveToEx(_dc, GetPos().x - GetScale().x * 8, GetPos().y, NULL); 
+	//LineTo(_dc, GetPos().x, GetPos().y); 
 	// 디버그용 코드 끝
 }
 
@@ -207,6 +207,10 @@ bool Goalkeeper::CheckIdleDistance()
 bool Goalkeeper::CheckDive()
 {
 	if (this->GetDiveCollider()->GetTarget() == nullptr) return false;
+	Vec2 tPos = this->GetDiveCollider()->GetTarget()->GetPos();
+	Vec2 tpPos = this->GetDiveCollider()->GetTarget()->GetParent()->GetPos();
+	float l = (tpPos - tPos).Length();
+	if( l < 10) return false;
 
 	Vec2 targetPos = this->GetDiveCollider()->GetTarget()->GetPos();
 	if (targetPos.x >= GetPos().x - GetScale().x* 16 / 2 && targetPos.x <= GetPos().x ) return false;

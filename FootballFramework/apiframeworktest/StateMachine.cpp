@@ -14,8 +14,8 @@ StateMachine::~StateMachine()
 {
 	if (m_owner != nullptr)
 		delete m_owner;
-//	if (m_stateMap.empty() == false)
-//		m_stateMap.clear();
+	if (m_stateMap.empty() == false)
+		m_stateMap.clear();
 	if (m_prevState != nullptr)
 		delete m_prevState;
 	if (m_nowState != nullptr)

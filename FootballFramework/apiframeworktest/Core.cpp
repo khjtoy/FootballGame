@@ -8,6 +8,7 @@
 #include "CollisionMgr.h"
 #include "EventMgr.h"
 #include "SoundMgr.h"
+#include "StageMgr.h"
 Core::Core()
 	: m_hDC(0)
 	, m_ptResolution{}
@@ -54,7 +55,8 @@ int Core::Init(HWND _hWnd, POINT _ptResolution)
 	TimeMgr::GetInst()->Init();
 	KeyMgr::GetInst()->Init();
 	SceneMgr::GetInst()->Init();
-	
+	StageMgr::GetInst()->Init();
+
 	return S_OK;
 }
 
@@ -72,7 +74,7 @@ void Core::Update()
 
 	// ==== Scene Update ====
 	SceneMgr::GetInst()->Update();
-
+	StageMgr::GetInst()->Update(); 
 	// ==== 충돌 체크 ====
 	CollisionMgr::GetInst()->Update();
 }

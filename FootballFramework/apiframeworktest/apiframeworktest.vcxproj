@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -198,6 +198,8 @@
     <ClInclude Include="Sound.h" />
     <ClInclude Include="SoundMgr.h" />
     <ClInclude Include="Staduim.h" />
+    <ClInclude Include="StageData.h" />
+    <ClInclude Include="StageMgr.h" />
     <ClInclude Include="StartPlayer.h" />
     <ClInclude Include="StartSceneText.h" />
     <ClInclude Include="State.h" />
@@ -253,6 +255,8 @@
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="SoundMgr.cpp" />
     <ClCompile Include="Staduim.cpp" />
+    <ClCompile Include="StageData.cpp" />
+    <ClCompile Include="StageMgr.cpp" />
     <ClCompile Include="StartPlayer.cpp" />
     <ClCompile Include="StartSceneText.cpp" />
     <ClCompile Include="State.cpp" />

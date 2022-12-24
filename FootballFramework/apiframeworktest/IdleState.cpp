@@ -25,7 +25,7 @@ void IdleState::Stay()
 
 	if (this->m_owner->CheckTackleDistance() == true)
 	{
-		m_stateMachine->ChangeState(STATE_TYPE::TACKLE);
+		//m_stateMachine->ChangeState(STATE_TYPE::TACKLE);
 	}
 	if (this->m_owner->CheckDive() == true)
 	{

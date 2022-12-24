@@ -95,3 +95,13 @@ enum class Dir
 	UP,
 	DOWN
 };
+
+enum class STAGE_TYPE
+{
+	GHANA,
+	JAPAN,
+	USA,
+	FRANCE,
+	ARGENTINA,
+	KOREA
+};
