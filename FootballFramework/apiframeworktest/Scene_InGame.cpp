@@ -48,6 +48,7 @@ void Scene_InGame::Enter()
 	pObj->SetParent(pPObj);
 	pObj->SetPos(Vec2(Core::GetInst()->GetResolution().x / 2, Core::GetInst()->GetResolution().y / 2));
 	pObj->SetScale(Vec2(2.5f,2.5f));
+	pObj->SetName(L"Ball");
 	AddObject(pObj, GROUP_TYPE::BALL);
 
 	// 골키퍼 오브젝트

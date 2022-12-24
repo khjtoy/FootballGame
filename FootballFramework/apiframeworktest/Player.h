@@ -24,5 +24,6 @@ private:
 public:
     void Update()       override;
     void Render(HDC _dc) override;
+    void EnterCollision(Collider* collider) override;
 };
 
