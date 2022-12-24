@@ -13,15 +13,11 @@
 #include "DiveCollider.h"
 #include "TimeMgr.h"
 #include "GoalText.h"
-<<<<<<< HEAD
 #include "GoalCircle.h"
 #include "Scene_Stage.h"
 #include "SoundMgr.h"
-
-=======
 #include "StageMgr.h"
 #include"StageData.h"
->>>>>>> origin/KPG
 InGameUI::InGameUI()
 	:explation(L"Press S to Start"),
 	 winText(L"WIN!!"),
