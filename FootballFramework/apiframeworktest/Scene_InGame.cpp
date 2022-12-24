@@ -24,9 +24,10 @@ Scene_InGame::~Scene_InGame()
 }
 void Scene_InGame::Enter()
 {
-	SoundMgr::GetInst()->LoadSound(L"BGM", true, L"Sound\\pianobgm.wav");
-	SoundMgr::GetInst()->Play(L"BGM");
-
+	//SoundMgr::GetInst()->LoadSound(L"BGM", true, L"Sound\\pianobgm.wav");
+	//SoundMgr::GetInst()->Play(L"BGM");
+	SoundMgr::GetInst()->Stop(SOUND_CHANNEL::SC_BGM);
+	SoundMgr::GetInst()->Play(L"KoreaBgm");
 	// 맵 그리기
 	Object* pObj = new Staduim;
 	pObj->SetPos(Vec2(Core::GetInst()->GetResolution().x / 2, Core::GetInst()->GetResolution().y / 2 + 110));
@@ -53,7 +54,7 @@ void Scene_InGame::Enter()
 	AddObject(pObj, GROUP_TYPE::BALL);
 
 	// 골키퍼 오브젝트
-	Goalkeeper* goalkeeper = new Goalkeeper(30.f);
+	Goalkeeper* goalkeeper = new Goalkeeper(30.f,600.f);
 	goalkeeper->SetName(L"Goalkeeper");
 	goalkeeper->SetFollower(pPObj);
 	goalkeeper->SetPos(Vec2(Core::GetInst()->GetResolution().x / 2 - 100, (long)100));
@@ -61,7 +62,7 @@ void Scene_InGame::Enter()
 	AddObject(goalkeeper, GROUP_TYPE::AI);
 
 	// 다이브 체크 콜라이더 오브젝트
-	DiveCollider* diveCol = new DiveCollider;
+	DiveCollider* diveCol = new DiveCollider(60.f);
 	diveCol->SetName(L"DiveCollider");
 	diveCol->SetParent(goalkeeper);
 	//diveCol->SetPos(Vec2(Core::GetInst()->GetResolution().x / 2 - 100, (long)100));

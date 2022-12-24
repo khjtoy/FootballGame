@@ -11,7 +11,7 @@
 #include "KeyMgr.h"
 #include "TimeMgr.h"
 #include "Collider.h"
-
+#include "SoundMgr.h"
 
 Ball::Ball()
 	:ballPos(8.0f,3.0f),
@@ -38,26 +38,30 @@ Ball::~Ball()
 void Ball::Update()
 {
 	GetAnimator()->Update();
-	if (KEY_TAP(KEY::LEFT))
+	if (isBlocked == false) // 막히지 않은 상태면 공 방향키 입력 받음 
 	{
-		dir = -1;
-	}
-	if (KEY_TAP(KEY::RIGHT))
-	{
-		dir = 1;
-	}
-	if (KEY_AWAY(KEY::SPACE))
-	{
-		if (KEY_TAP(KEY::LEFT) || KEY_HOLD(KEY::LEFT) || KEY_AWAY(KEY::LEFT))
+		if (KEY_TAP(KEY::LEFT))
 		{
-			rot = -1;
+			dir = -1;
 		}
-		else if (KEY_TAP(KEY::RIGHT) || KEY_HOLD(KEY::RIGHT) || KEY_AWAY(KEY::RIGHT))
+		if (KEY_TAP(KEY::RIGHT))
 		{
-			rot = 1;
+			dir = 1;
 		}
-		isCheck = true;
+		if (KEY_AWAY(KEY::SPACE)) // 공 찼으면 
+		{
+			if (KEY_TAP(KEY::LEFT) || KEY_HOLD(KEY::LEFT) || KEY_AWAY(KEY::LEFT))
+			{
+				rot = -1;
+			}
+			else if (KEY_TAP(KEY::RIGHT) || KEY_HOLD(KEY::RIGHT) || KEY_AWAY(KEY::RIGHT))
+			{
+				rot = 1;
+			}
+			isCheck = true;
+		}
 	}
+
 	if (isCheck)
 	{
 		
@@ -75,6 +79,8 @@ void Ball::Update()
 	}
 	else
 		SetPos(Vec2(8 * dir, -3));
+
+
 }
 
 void Ball::Render(HDC _dc)
@@ -92,12 +98,15 @@ void Ball::EnterCollision(Collider* _pOther)
 		speedX = 0;
 		speedY = 0;
 		CreateGoalText();
+		SoundMgr::GetInst()->Play(L"GoalEff");
 	}
 	if (pOtherObj->GetName() == L"Goalkeeper")
 	{
 		speedX = 0;
 		speedY = 0;
 		isCheck = false;
+		isBlocked = true; 
+		SoundMgr::GetInst()->Play(L"SighEff");
 	}
 }
 
@@ -108,3 +117,4 @@ void Ball::CreateGoalText()
 	pObj->SetScale(Vec2(4.f, 4.f));
 	CreateObject(pObj, GROUP_TYPE::UI);
 }
+

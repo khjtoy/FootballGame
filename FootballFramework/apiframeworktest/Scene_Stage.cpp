@@ -5,6 +5,7 @@
 #include "Flag.h"
 #include "Arrow.h"
 #include "Core.h"
+#include "SoundMgr.h"
 
 Scene_Stage::Scene_Stage()
 {
@@ -39,5 +40,6 @@ void Scene_Stage::Update()
 	if (KEY_TAP(KEY::ENTER))
 	{
 		ChangeScene(SCENE_TYPE::INGAME);
+		SoundMgr::GetInst()->Play(L"SelectEff");
 	}
 }

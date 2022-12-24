@@ -4,10 +4,11 @@
 class DiveCollider : public Object
 {
 private:
+	float m_xSize; 
 	bool m_isCollision; 
 	Ball* m_target; 
 public:
-	DiveCollider(); 
+	DiveCollider(float size); 
 	~DiveCollider(); 
 public:
 	// Object을(를) 통해 상속됨

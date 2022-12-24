@@ -6,7 +6,7 @@
 #include "KeyMgr.h"
 #include "Core.h"
 #include "Arrow.h"
-
+#include "SoundMgr.h"
 Flag::Flag()
 	:curIndex(0),
 	 check(false),
@@ -55,6 +55,7 @@ void Flag::Update()
 				SetIndexImage();
 				arrowUP->CheckAlpha(curIndex);
 				arrowDown->CheckAlpha(curIndex);
+				SoundMgr::GetInst()->Play(L"CursorEff");
 			}
 		}
 		if (KEY_TAP(KEY::DOWN))
@@ -65,6 +66,7 @@ void Flag::Update()
 				SetIndexImage();
 				arrowUP->CheckAlpha(curIndex);
 				arrowDown->CheckAlpha(curIndex);
+				SoundMgr::GetInst()->Play(L"CursorEff");
 			}
 		}
 	}

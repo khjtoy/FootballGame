@@ -20,7 +20,7 @@ private:
     float speedY;
     Vec2 ballPos;
     bool isCheck = false;
+    bool isBlocked = false;
 private:
     void CreateGoalText();
 };
-

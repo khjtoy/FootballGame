@@ -10,12 +10,18 @@
 #include "Collider.h"
 #include "Animator.h"
 #include "Animation.h"
+#include "SoundMgr.h"
+
 Player::Player()
 	:hSpeed(150.f),
 	 vSpeed(80.f),
 	isShoot(false)
 {
-
+	// 콜라이더 생성 ( 골키퍼와 부딪히면 멈추도록 ) 
+	CreateCollider(); 
+	GetCollider()->SetScale(Vec2(20.f, 20.f));
+	GetCollider()->SetOffsetPos(Vec2(-10.f, -10.f));
+	
 	// image 업로드
  
 	Image* pImg = ResMgr::GetInst()->ImgLoad(L"PlayerFrontKick", L"Image\\PlayerKickF.bmp");
@@ -61,10 +67,14 @@ void Player::Update()
 	}
 	else
 	{
+
 		// 숫 찰때 속도 줄이기
 		vPos.y -= (vSpeed / 2) * fDT;
 		if (KEY_AWAY(KEY::SPACE) && !isShoot)
+		{
+			SoundMgr::GetInst()->Play(L"KickEff");
 			isShoot = true;
+		}
 	}
 	SetPos(vPos);
 	GetAnimator()->Update();
@@ -102,6 +112,8 @@ void Player::EnterCollision(Collider* collider)
 	if (obj->GetName() == L"Goalkeeper")
 	{
 		// 멈춰 
+		isShoot = true;
 		hSpeed = 0;
+		vSpeed = 0; 
 	}
 }
