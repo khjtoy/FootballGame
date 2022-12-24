@@ -8,6 +8,7 @@ class Ball;
 class Goalkeeper;
 class DiveCollider;
 class GoalText;
+class GoalCircle;
 class InGameUI :
     public Object
 {
@@ -30,9 +31,18 @@ private:
 
     GoalText* myGoldText;
 
+    GoalCircle* pGCircle[5];
+
     wstring explation;
     int round;
     bool gameStart = false;
+
+    int winCount;
+    int failCount;
+
+    wstring winText;
+    wstring FailText;
+    wstring exitText;
 private:
     void UISpawn();
     void IngameSpawn();

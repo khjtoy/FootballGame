@@ -13,11 +13,26 @@
 #include "DiveCollider.h"
 #include "TimeMgr.h"
 #include "GoalText.h"
+#include "GoalCircle.h"
+#include "Scene_Stage.h"
+#include "SoundMgr.h"
 
 InGameUI::InGameUI()
 	:explation(L"Press S to Start"),
+	 winText(L"WIN!!"),
+	 FailText(L"LOSE.."),
+	 exitText(L"Press Space to continue."),
+	 winCount(0),
+	 failCount(0),
 	 round(1)
 {
+	for (int i = 0; i < 5; i++)
+	{
+		pGCircle[i] = new GoalCircle;
+		pGCircle[i]->SetPos(Vec2(Core::GetInst()->GetResolution().x / 2 + 200 + (i * 40), Core::GetInst()->GetResolution().y / 2 - 300));
+		pGCircle[i]->SetScale(Vec2(2.f, 2.f));
+		CreateObject(pGCircle[i], GROUP_TYPE::UI);
+	}
 	UISpawn();
 }
 
@@ -27,7 +42,7 @@ InGameUI::~InGameUI()
 
 void InGameUI::Update()
 {
-	if (KEY_TAP(KEY::S) && !gameStart)
+	if (KEY_TAP(KEY::S) && !gameStart && winCount <= 2 && failCount <= 2)
 	{
 		gameStart = true;
 		DeleteObject(flag1);
@@ -44,6 +59,18 @@ void InGameUI::Update()
 	{
 		if (pBObj->GetShoot())
 		{
+			if (pBObj->GetBlocked())
+			{
+				pGCircle[round - 1]->ChangeFail();
+				failCount++;
+			}
+			else
+			{
+				pGCircle[round - 1]->ChangeGoal();
+				winCount++;
+			}
+
+
 			gameStart = false;
 			round++;
 			myGoldText = pBObj->MyGoldText();
@@ -51,32 +78,48 @@ void InGameUI::Update()
 			DeleteObject(pBObj);
 			DeleteObject(goalkeeper);
 			DeleteObject(diveCol);
-			UISpawn();
+			if (winCount <= 2 && failCount <= 2)
+				UISpawn();
 		}
+	}
+
+	if ((winCount >= 3 || failCount >= 3) && KEY_TAP(KEY::SPACE))
+	{
+		ChangeScene(SCENE_TYPE::STAGE);
 	}
 }
 
 void InGameUI::Render(HDC _dc)
 {
-	if (!gameStart)
+	HFONT hFont = CreateFont(30, 0, 0, 0, 0, 0, 0, 0, HANGEUL_CHARSET, 0, 0, 0, VARIABLE_PITCH, TEXT("±Ã¼­"));
+
+	HFONT oldFont = (HFONT)SelectObject(_dc, hFont);
+	SetBkMode(_dc, TRANSPARENT);
+
+	SetTextColor(_dc, RGB(0, 0, 0));
+	if (winCount >= 3)
 	{
-		HFONT hFont = CreateFont(30, 0, 0, 0, 0, 0, 0, 0, HANGEUL_CHARSET, 0, 0, 0, VARIABLE_PITCH, TEXT("±Ã¼­"));
-
-		HFONT oldFont = (HFONT)SelectObject(_dc, hFont);
-		SetBkMode(_dc, TRANSPARENT);
-
-		SetTextColor(_dc, RGB(0, 0, 0));
+		TextOut(_dc, 480, 310, winText.c_str(), winText.length());
+		TextOut(_dc, 330, 350, exitText.c_str(), exitText.length());
+	}
+	else if (failCount >= 3)
+	{
+		TextOut(_dc, 480, 310, FailText.c_str(), FailText.length());
+		TextOut(_dc, 330, 350, exitText.c_str(), exitText.length());
+	}
+	else if (!gameStart)
+	{
 
 		wstring roundText = L"Round " + to_wstring(round);
 
 		TextOut(_dc, 460, 250, roundText.c_str(), roundText.length());
 
 		TextOut(_dc, 400, 420, explation.c_str(), explation.length());
-
-		SelectObject(_dc, oldFont);
-		SetBkMode(_dc, OPAQUE);
-		DeleteObject(hFont);
 	}
+
+	SelectObject(_dc, oldFont);
+	SetBkMode(_dc, OPAQUE);
+	DeleteObject(hFont);
 	Component_Render(_dc);
 }
 
@@ -109,8 +152,10 @@ void InGameUI::UISpawn()
 
 void InGameUI::IngameSpawn()
 {
+	// -250 ~ 50
+	int random = (rand() % 301) - 250;
 	pPObj = new Player;
-	pPObj->SetPos(Vec2(Core::GetInst()->GetResolution().x / 2, Core::GetInst()->GetResolution().y / 2));
+	pPObj->SetPos(Vec2(Core::GetInst()->GetResolution().x / 2 + random, Core::GetInst()->GetResolution().y / 2));
 	pPObj->SetScale(Vec2(2.f, 2.f));
 	CreateObject(pPObj, GROUP_TYPE::PLAYER);
 

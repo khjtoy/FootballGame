@@ -174,12 +174,14 @@
     <ClInclude Include="framework.h" />
     <ClInclude Include="func.h" />
     <ClInclude Include="Goal.h" />
+    <ClInclude Include="GoalCircle.h" />
     <ClInclude Include="GoalText.h" />
     <ClInclude Include="IdleState.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="InGameUI.h" />
     <ClInclude Include="KeyMgr.h" />
     <ClInclude Include="Object.h" />
+    <ClInclude Include="Outline.h" />
     <ClInclude Include="PathMgr.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Player.h" />
@@ -204,6 +206,7 @@
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Goalkeeper.h" />
     <ClInclude Include="TimeMgr.h" />
+    <ClInclude Include="TouchLine.h" />
     <ClInclude Include="Vec2.h" />
     <ClInclude Include="VSIcon.h" />
   </ItemGroup>
@@ -221,6 +224,7 @@
     <ClCompile Include="Flag.cpp" />
     <ClCompile Include="func.cpp" />
     <ClCompile Include="Goal.cpp" />
+    <ClCompile Include="GoalCircle.cpp" />
     <ClCompile Include="GoalText.cpp" />
     <ClCompile Include="IdleState.cpp" />
     <ClCompile Include="Image.cpp" />
@@ -234,6 +238,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Object.cpp" />
+    <ClCompile Include="Outline.cpp" />
     <ClCompile Include="PathMgr.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Res.cpp" />
@@ -255,6 +260,7 @@
     <ClCompile Include="TackleState.cpp" />
     <ClCompile Include="Goalkeeper.cpp" />
     <ClCompile Include="TimeMgr.cpp" />
+    <ClCompile Include="TouchLine.cpp" />
     <ClCompile Include="Vec2.cpp" />
     <ClCompile Include="VSIcon.cpp" />
   </ItemGroup>

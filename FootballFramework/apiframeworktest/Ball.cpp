@@ -103,7 +103,7 @@ void Ball::EnterCollision(Collider* _pOther)
 		SoundMgr::GetInst()->Play(L"GoalEff");
 		isShoot = true;
 	}
-	if (pOtherObj->GetName() == L"Goalkeeper")
+	else if (pOtherObj->GetName() == L"Goalkeeper" || pOtherObj->GetName() == L"Outline")
 	{
 		speedX = 0;
 		speedY = 0;

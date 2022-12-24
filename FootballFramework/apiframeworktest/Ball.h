@@ -29,6 +29,7 @@ private:
     void CreateGoalText();
 public:
     bool GetShoot() { return isShoot; }
+    bool GetBlocked() { return isBlocked; }
     void SetShoot(bool value) { isShoot = value; }
     GoalText* MyGoldText() { return pObj; }
 };

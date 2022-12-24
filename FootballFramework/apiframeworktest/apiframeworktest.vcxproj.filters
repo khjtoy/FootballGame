@@ -45,6 +45,9 @@
     <ClCompile Include="TimeMgr.cpp" />
     <ClCompile Include="Vec2.cpp" />
     <ClCompile Include="VSIcon.cpp" />
+    <ClCompile Include="GoalCircle.cpp" />
+    <ClCompile Include="Outline.cpp" />
+    <ClCompile Include="TouchLine.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
@@ -95,6 +98,9 @@
     <ClInclude Include="TimeMgr.h" />
     <ClInclude Include="Vec2.h" />
     <ClInclude Include="VSIcon.h" />
+    <ClInclude Include="GoalCircle.h" />
+    <ClInclude Include="Outline.h" />
+    <ClInclude Include="TouchLine.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="apiframeworktest.rc" />

@@ -41,6 +41,7 @@ enum class GROUP_TYPE
 	DEFAULT,
 	MAP,
 	Goal,
+	Outline,
 	AI,
 	BALL,
 	PLAYER,
