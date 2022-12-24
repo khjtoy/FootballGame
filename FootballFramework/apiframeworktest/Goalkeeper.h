@@ -36,7 +36,7 @@ private: // 디버그
 	wstring m_debugText2;
 	wstring m_debugText3;
 public:
-	Goalkeeper(float runSpeed);
+	Goalkeeper(float runSpeed,float diveSpeed);
 	~Goalkeeper(); 
 public:
 	// Object을(를) 통해 상속됨

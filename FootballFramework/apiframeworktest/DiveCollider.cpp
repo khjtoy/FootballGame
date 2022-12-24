@@ -3,12 +3,14 @@
 #include "Collider.h"
 #include "Ball.h"
 
-DiveCollider::DiveCollider()
+DiveCollider::DiveCollider(float xSize)
 	:m_isCollision(false)
 	, m_target(nullptr)
 {
+	m_xSize = xSize; 
+
 	CreateCollider();
-	GetCollider()->SetScale(Vec2(200.f, 60.f));
+	GetCollider()->SetScale(Vec2(200.f, xSize));
 	GetCollider()->SetOffsetPos(Vec2(-8.f, 0.f));
 
 }

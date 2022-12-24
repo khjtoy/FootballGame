@@ -17,7 +17,7 @@
 #include "Ball.h"
 #include "DiveCollider.h"
 
-Goalkeeper::Goalkeeper(float runSpeed)
+Goalkeeper::Goalkeeper(float runSpeed,float diveSpeed)
 	:m_stateMachine(nullptr)
 	, m_idleState(nullptr)
 	, m_runState(nullptr)
@@ -25,9 +25,9 @@ Goalkeeper::Goalkeeper(float runSpeed)
 	, m_diveCollider(nullptr)
 	, m_idleDistance(100)
 	, m_tackleDistance(30)
-	, m_diveSpeed(600.f)
 {
 	m_runSpeed = runSpeed;
+	m_diveSpeed = diveSpeed; 
 	// collider 새성
 	CreateCollider();
 	GetCollider()->SetScale(Vec2(20.f, 30.f));
@@ -297,9 +297,11 @@ void Goalkeeper::EnterCollision(Collider* _pOther)
 	Object* colObj = _pOther->GetObj();
 	if (colObj->GetName() == L"Ball") // 공 건드렸으면 
 	{
+		// 움직이는 거 멈추고
 		m_runSpeed = 0.f;
 		m_diveSpeed = 0.f;
 		m_isEnd =true;
+		// 공 뺏어오고 
 		GetDiveCollider()->GetTarget()->SetParent(this);
 		// 공 멈추고 
 		// 플레이어 위치, 공 위치 계산해서 튕기도록

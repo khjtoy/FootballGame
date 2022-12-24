@@ -5,6 +5,8 @@
 #include "Animator.h"
 #include "Animation.h"
 #include "Player.h"
+#include "DiveCollider.h"
+
 TackleState::TackleState(Goalkeeper* owner, StateMachine* stateMachine, STATE_TYPE stateType)
 	:State(owner, stateMachine, stateType)
 {
