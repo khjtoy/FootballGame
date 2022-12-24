@@ -37,6 +37,7 @@
     <ClCompile Include="TimeMgr.cpp" />
     <ClCompile Include="Vec2.cpp" />
     <ClCompile Include="TackleState.cpp" />
+    <ClCompile Include="DiveCollider.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
@@ -79,6 +80,7 @@
     <ClInclude Include="TimeMgr.h" />
     <ClInclude Include="Vec2.h" />
     <ClInclude Include="TackleState.h" />
+    <ClInclude Include="DiveCollider.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="apiframeworktest.rc" />

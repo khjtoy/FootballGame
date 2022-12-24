@@ -41,11 +41,12 @@ enum class GROUP_TYPE
 	DEFAULT,
 	MAP,
 	Goal,
+	AI,
 	BALL,
 	PLAYER,
 	UI,
 
-	Goalkeeper = 31,
+	COLLIDER = 31,
 	END = 32,
 };
 

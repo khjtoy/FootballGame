@@ -9,14 +9,17 @@ class DiveState;
 class TackleState; 
 class StateMachine;
 class Image; 
+class DiveCollider; 
 class Goalkeeper : 
 	public Object
 {
 private:
 	float m_runSpeed; 
+	float m_diveSpeed; 
 	float m_idleDistance; 
 	float m_tackleDistance; 
-	Collider* m_diveCollider; // 다이빙 체크
+	bool m_isEnd; 
+	DiveCollider* m_diveCollider; // 다이빙 체크
 
 private: 
 	// FSM
@@ -43,29 +46,36 @@ public:
 //	virtual Object* Clone() override;
 public : // 애니메이션 
 	void SetAnimations(); // 애니메이션 설정 
+	void PlayAnimByName(wstring animName); // 애니메이션 이름받고 실행
 	void PlayLeftDivingAnim(); // 왼쪽 다이빙 애니메이션 플레이
 	void PlayRightDivingAnim(); // 오른쪽 다이빙 애니메이션 플레이
 	void PlayRunAnim(); // 달리기 애니메이션 플레이  
 	void PlayIdleAnim(); // 기본 상태 애니메이션 플레이 
+	void PlayTackleAnim(); // 태클 이미지 변경 
 public: //FSM
 	// 체크 
 	bool CheckIdleDistance(); 
-	bool CheckDiveDistance(); 
+	bool CheckDive(); 
 	bool CheckTackleDistance(); 
+	bool CheckIsBallRight();
 	// 행동
-	void Idle(); // 기본 
+	void IdleMove(); // 기본 
 	void RunForward(); // 앞으로 달려가기 
-	void Dive(); // 다이빙 
+	void Dive(bool isRight); // 다이빙 
 	void Tackle(); // 태클
 public: // 디버그
 	void SetDebugText1(wstring str) { m_debugText1 = str;}
 	void SetDebugText2(wstring str) { m_debugText2 = str; }
 	void SetDebugText3(wstring str) { m_debugText3 = str; }
 public:
-	//Collider* GetCollider() { return m_diveCollider; }
-	void CreateDiveCollider(); 
-	float GetTargetDistance(); 
-	Vec2 GetTargetDir(); 
+	bool GetIsEnd() { return m_isEnd; }
+
+	DiveCollider* GetDiveCollider() { return m_diveCollider; }
+	void SetDiveCollider(DiveCollider* diveCol) { m_diveCollider = diveCol; }
+	float GetTargetDistance(Vec2 target); 
+	Vec2 GetTargetDir(Vec2 target);
+
+	virtual void EnterCollision(Collider* _pOther) override; 
 
 };
 	

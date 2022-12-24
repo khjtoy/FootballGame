@@ -19,7 +19,7 @@ public:
 	void SetScale(Vec2 _vScale) { m_vScale = _vScale; }
 	void SetParent(Object* parentObj) { m_parentObj = parentObj; }
 	void SetFollower(Object* followObj) { m_followObj = followObj; }
-	const Vec2& GetOrigin() { return Vec2(m_vPos.x + m_vScale.x / 2, m_vPos.y + m_vScale.y / 2); }
+	const Vec2& GetOrigin() { return Vec2(m_vPos.x - m_vScale.x * 16 / 4, m_vPos.y - m_vScale.y * 24 / 4); }
 	const Vec2& GetPos() { return m_vPos; }
 	const Vec2& GetScale() { return m_vScale; }
 	Object* GetParent() { return m_parentObj; }

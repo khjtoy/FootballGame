@@ -14,29 +14,31 @@
 #include "Animation.h"
 #include "TimeMgr.h"
 #include "SelectGDI.h"
-
+#include "Ball.h"
+#include "DiveCollider.h"
 
 Goalkeeper::Goalkeeper(float runSpeed)
 	:m_stateMachine(nullptr)
-	,m_idleState(nullptr)
-	,m_runState(nullptr)
+	, m_idleState(nullptr)
+	, m_runState(nullptr)
 	, m_diveState(nullptr)
 	, m_diveCollider(nullptr)
 	, m_idleDistance(100)
 	, m_tackleDistance(30)
+	, m_diveSpeed(600.f)
 {
-	m_runSpeed = runSpeed; 
+	m_runSpeed = runSpeed;
 	// collider 새성
 	CreateCollider();
 	GetCollider()->SetScale(Vec2(20.f, 30.f));
 	GetCollider()->SetOffsetPos(Vec2(-10.f, -10.f));
 
 	// FSM 초기화 및 설정 
-	m_stateMachine = new StateMachine(this); 
+	m_stateMachine = new StateMachine(this);
 	m_idleState = new IdleState(this, m_stateMachine, STATE_TYPE::IDLE);
 	m_runState = new RunState(this, m_stateMachine, STATE_TYPE::RUN);
 	m_diveState = new DiveState(this, m_stateMachine, STATE_TYPE::DIVE);
-	m_tackleState = new TackleState(this, m_stateMachine, STATE_TYPE::TACKLE); 
+	m_tackleState = new TackleState(this, m_stateMachine, STATE_TYPE::TACKLE);
 	m_stateMachine->AddState(m_idleState);
 	m_stateMachine->AddState(m_runState);
 	m_stateMachine->AddState(m_diveState);
@@ -45,8 +47,10 @@ Goalkeeper::Goalkeeper(float runSpeed)
 	m_stateMachine->ChangeState(STATE_TYPE::RUN);
 	// FSM 끝 
 
+
+
 	// 애니메이션 설정
-	SetAnimations(); 
+	SetAnimations();
 
 }
 
@@ -55,7 +59,7 @@ Goalkeeper::~Goalkeeper()
 	if (m_stateMachine != nullptr)
 		delete m_stateMachine;
 	if (m_idleState != nullptr)
-		delete m_idleState; 
+		delete m_idleState;
 	if (m_runState != nullptr)
 		delete m_runState;
 	if (m_diveState != nullptr)
@@ -66,7 +70,7 @@ Goalkeeper::~Goalkeeper()
 
 void Goalkeeper::Update()
 {
-	if(KEY_TAP(KEY::A))
+	if (KEY_TAP(KEY::A))
 	{
 		m_stateMachine->ChangeState(STATE_TYPE::IDLE);
 	}
@@ -80,7 +84,7 @@ void Goalkeeper::Update()
 	}
 	else if (KEY_TAP(KEY::Q))
 	{
-		PlayLeftDivingAnim(); 
+		PlayLeftDivingAnim();
 	}
 	else if (KEY_TAP(KEY::W))
 	{
@@ -88,7 +92,8 @@ void Goalkeeper::Update()
 	}
 	else if (KEY_TAP(KEY::E))
 	{
-		PlayRunAnim();
+		//PlayRunAnim();
+		PlayTackleAnim();
 	}
 	m_stateMachine->Update();
 	GetAnimator()->Update();
@@ -105,26 +110,35 @@ void Goalkeeper::Render(HDC _dc)
 	TextOut(_dc, 10, 40, m_debugText1.c_str(), m_debugText1.length()); // Enter
 	TextOut(_dc, 10, 70, m_debugText2.c_str(), m_debugText2.length()); // Stay
 	TextOut(_dc, 10, 200, m_debugText3.c_str(), m_debugText3.length()); // Exit
+	if (m_diveCollider->GetIsCollision())
+	{
+		TextOut(_dc, 10, 120, L"충돌", 2);
+	}
 
 	PEN_TYPE ePen = PEN_TYPE::RED;
 	SelectGDI p(_dc, ePen);
 	SelectGDI b(_dc, BRUSH_TYPE::HOLLOW);
 
+	Vec2 pos = GetOrigin();
 	// 멈추는 범위 디버그
-	Ellipse(_dc, GetPos().x - m_idleDistance,
-		GetPos().y + m_idleDistance ,
-		GetPos().x + m_idleDistance,
-		GetPos().y - m_idleDistance );
+	Ellipse(_dc, pos.x - m_idleDistance,
+		pos.y + m_idleDistance,
+		pos.x + m_idleDistance,
+		pos.y - m_idleDistance);
 
 	// 태클 범위 디버그
-	Ellipse(_dc, GetPos().x - m_tackleDistance,
-		GetPos().y + m_tackleDistance ,
-		GetPos().x + m_tackleDistance ,
-		GetPos().y - m_tackleDistance);
+	Ellipse(_dc, pos.x - m_tackleDistance,
+		pos.y + m_tackleDistance,
+		pos.x + m_tackleDistance,
+		pos.y - m_tackleDistance);
+
 
 	// 골키퍼 포지션 -> 플레이어 포지션 
-	MoveToEx(_dc, GetPos().x, GetPos().y, NULL); 
-	LineTo(_dc, GetFollower()->GetPos().x, GetFollower()->GetPos().y);
+	MoveToEx(_dc, GetOrigin().x, GetOrigin().y, NULL);
+	LineTo(_dc, GetFollower()->GetOrigin().x, GetFollower()->GetOrigin().y);
+
+	MoveToEx(_dc, GetPos().x - GetScale().x * 8, GetPos().y, NULL); 
+	LineTo(_dc, GetPos().x, GetPos().y); 
 	// 디버그용 코드 끝
 }
 
@@ -135,13 +149,25 @@ void Goalkeeper::SetAnimations()
 	CreateAnimator();
 
 	Image* pImg1 = ResMgr::GetInst()->ImgLoad(L"GoalkeeperLeftDiving", L"Image\\GoalkeeperFrontLeft.bmp");
-	GetAnimator()->CreateAnimation(L"GoalkeeperLeftDiving", pImg1, Vec2(138.f, 0.f), Vec2(23.f, 22.f), Vec2(-23.f, 0.f), 6, 0.1f);
+	GetAnimator()->CreateAnimation(L"GoalkeeperLeftDiving", pImg1, Vec2(138.f, 0.f), Vec2(23.f, 22.f), Vec2(-23.f, 0.f), 6, 0.05f);
 
 	Image* pImg2 = ResMgr::GetInst()->ImgLoad(L"GoalkeeperRightDiving", L"Image\\GoalkeeperFrontRight.bmp");
-	GetAnimator()->CreateAnimation(L"GoalkeeperRightDiving", pImg2, Vec2(0.f, 0.f), Vec2(23.f, 22.f), Vec2(23.f, 0.f), 6, 0.1f);
+	GetAnimator()->CreateAnimation(L"GoalkeeperRightDiving", pImg2, Vec2(0.f, 0.f), Vec2(23.f, 22.f), Vec2(23.f, 0.f), 6, 0.05f);
 
 	Image* pImg3 = ResMgr::GetInst()->ImgLoad(L"GoalkeeperRunFront", L"Image\\GoalkeeperRunFront.bmp");
 	GetAnimator()->CreateAnimation(L"GoalkeeperRunFront", pImg3, Vec2(0.f, 0.f), Vec2(16.f, 24.f), Vec2(16.f, 0.f), 4, 0.1f);
+
+	Image* pImg4 = ResMgr::GetInst()->ImgLoad(L"GoalkeeperTackleLeft", L"Image\\GoalkeeperTackleLeft.bmp");
+	GetAnimator()->CreateAnimation(L"GoalkeeperTackleLeft", pImg4, Vec2(0.f, 0.f), Vec2(16.f, 24.f), Vec2(16.f, 0.f), 1, 0.1f);
+
+	Image* pImg5 = ResMgr::GetInst()->ImgLoad(L"GoalkeeperIdleFront", L"Image\\GoalkeeperIdleFront.bmp");
+	GetAnimator()->CreateAnimation(L"GoalkeeperIdleFront", pImg5, Vec2(0.f, 0.f), Vec2(16.f, 24.f), Vec2(16.f, 0.f), 1, 1.f);
+
+}
+
+void Goalkeeper::PlayAnimByName(wstring animName)
+{
+	GetAnimator()->Play(animName, false);
 }
 
 void Goalkeeper::PlayLeftDivingAnim()
@@ -159,56 +185,93 @@ void Goalkeeper::PlayRunAnim()
 	GetAnimator()->Play(L"GoalkeeperRunFront", true);
 }
 
+void Goalkeeper::PlayTackleAnim()
+{
+	GetAnimator()->Play(L"GoalkeeperTackleLeft", true);
+}
+
 void Goalkeeper::PlayIdleAnim()
 {
+	GetAnimator()->Play(L"GoalkeeperIdleFront", true);
 }
 
 bool Goalkeeper::CheckIdleDistance()
 {
-	if (GetTargetDistance() < m_idleDistance)
+	if (GetTargetDistance(this->GetFollower()->GetPos()) < m_idleDistance)
 	{
 		return true;
 	}
 	return false;
 }
 
-bool Goalkeeper::CheckDiveDistance()
+bool Goalkeeper::CheckDive()
 {
+	if (this->GetDiveCollider()->GetTarget() == nullptr) return false;
 
+	Vec2 targetPos = this->GetDiveCollider()->GetTarget()->GetPos();
+	if (targetPos.x >= GetPos().x - GetScale().x* 16 / 2 && targetPos.x <= GetPos().x ) return false;
+
+	if (m_diveCollider->GetIsCollision() == true)
+	{
+		return true;
+	}
 	return false;
 }
+
+bool Goalkeeper::CheckIsBallRight()
+{
+	Vec2 dir = GetTargetDir(this->GetDiveCollider()->GetTarget()->GetPos());
+	if (dir.x > 0) // 오른쪽에 있다면 
+	{
+		return true;
+	}
+	else if (dir.x <= 0) // 왼쪽에 있다면 
+	{
+		return false;
+	}
+}
+
 
 bool Goalkeeper::CheckTackleDistance()
 {
-	if (GetTargetDistance() < m_tackleDistance)
+	if (GetTargetDistance(this->GetFollower()->GetPos()) < m_tackleDistance)
 	{
 		return true;
 	}
 	return false;
 }
 
-void Goalkeeper::Idle()
+
+void Goalkeeper::IdleMove() // X축만 따라간다. 
 {
+	Vec2 vPos = this->GetPos();
+	Vec2 dir = this->GetTargetDir(this->GetFollower()->GetPos());
+	vPos.x += dir.x * m_runSpeed * 4.f * fDT;
+
+	this->SetPos(vPos);
 }
 
 void Goalkeeper::RunForward()
 {
-
-
-	//wstring str; 
-	//str.assign(to_string(dir.x).begin(), to_string(dir.x).end()); 
-	//SetDebugText2(str);
 	Vec2 vPos = GetPos();
-	Vec2 dir = GetTargetDir(); 
-	vPos.x += dir.x * m_runSpeed * fDT;
+	Vec2 dir = GetTargetDir(this->GetFollower()->GetPos());
+	vPos.x += dir.x * m_runSpeed * 3.f * fDT;
 	vPos.y += dir.y * m_runSpeed * fDT;
 	SetPos(vPos);
 }
 
-void Goalkeeper::Dive()
+void Goalkeeper::Dive(bool isRight)
 {
 	Vec2 vPos = GetPos();
-	vPos.x += 100.f * fDT;
+	Vec2 tPos = GetDiveCollider()->GetTarget()->GetPos(); 
+	if (isRight == true&& vPos.x <= tPos.x ) // 공보다 더 멀리 뛰면 안돼
+	{
+		vPos.x += m_diveSpeed * fDT;
+	}
+	else if(isRight == false && vPos.x >= tPos.x)
+	{
+		vPos.x -= m_diveSpeed * fDT;
+	}
 	SetPos(vPos);
 }
 
@@ -216,20 +279,30 @@ void Goalkeeper::Tackle()
 {
 }
 
-void Goalkeeper::CreateDiveCollider()
+float Goalkeeper::GetTargetDistance(Vec2 target)
 {
+	Vec2 pos = this->GetPos(); // 내 위치
+	return (target - pos).Length();
 }
 
-float Goalkeeper::GetTargetDistance()
-{
-	Vec2 v = this->GetFollower()->GetPos(); // 타겟 위치
-	Vec2 v2 = this->GetPos(); // 내 위치
-	return (v - v2).Length();
-}
-
-Vec2 Goalkeeper::GetTargetDir()
+Vec2 Goalkeeper::GetTargetDir(Vec2 target)
 {
 	Vec2 vPos = GetPos();
-	Vec2 followPos = this->GetFollower()->GetPos();
-	return (followPos - vPos).Normalize();
+	return (target - vPos).Normalize();
+}
+
+// 충돌 처리 
+void Goalkeeper::EnterCollision(Collider* _pOther)
+{
+	Object* colObj = _pOther->GetObj();
+	if (colObj->GetName() == L"Ball") // 공 건드렸으면 
+	{
+		m_runSpeed = 0.f;
+		m_diveSpeed = 0.f;
+		m_isEnd =true;
+		GetDiveCollider()->GetTarget()->SetParent(this);
+		// 공 멈추고 
+		// 플레이어 위치, 공 위치 계산해서 튕기도록
+		// -그냥 y를 음수로 x는 무작위로 해서 튕기게 
+	}
 }
