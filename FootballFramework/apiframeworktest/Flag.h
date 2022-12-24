@@ -14,11 +14,18 @@ private:
 	CLONE(Flag);
 private:
 	Image* f_curImg;
-	wstring flags[5];
+	wstring flags[6];
 	int curIndex;
 	Arrow* arrowUP;
 	Arrow* arrowDown;
+	wstring rule;
+	wstring rule2;
 private:
 	void SetIndexImage();
+public:
+	void SetcurIndex(int index)
+	{
+		curIndex = index;
+	}
 };
 

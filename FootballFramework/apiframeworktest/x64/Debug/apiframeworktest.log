@@ -1,4 +1,9 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(513,5): warning MSB8028: 중간 디렉터리(x64\Debug\)에 다른 프로젝트(apiframeworktest.vcxproj)에서 공유하는 파일이 포함되어 있습니다.  이로 인해 잘못된 정리 및 다시 빌드 동작이 수행될 수 있습니다.
-  StartPlayer.cpp
-C:\Football\FootballFramework\apiframeworktest\StartPlayer.cpp(36,20): warning C4244: '초기화 중': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Flag.cpp
+C:\Football\FootballFramework\apiframeworktest\Flag.cpp(80,30): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Football\FootballFramework\apiframeworktest\Flag.cpp(80,11): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Football\FootballFramework\apiframeworktest\Flag.cpp(92,52): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Football\FootballFramework\apiframeworktest\Flag.cpp(95,54): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  InGameUI.cpp
+  Scene_Stage.cpp
   apiframeworktest.vcxproj -> C:\Football\FootballFramework\OutPut\bin_debug\Gamep_winapiframework.exe

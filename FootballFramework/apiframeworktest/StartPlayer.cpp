@@ -12,7 +12,8 @@
 StartPlayer::StartPlayer()
 	:minX(330),
 	 maxX(130),
-	 dir(1)
+	 dir(1),
+	 speed(80)
 {
 	Image* pImg = ResMgr::GetInst()->ImgLoad(L"PlayerRightRun", L"Image\\PlayerRightRun.bmp");
 
@@ -42,7 +43,7 @@ void StartPlayer::Update()
 		SetDirAni();
 	}
 
-	vPos.x += 80.f * fDT * dir;
+	vPos.x += (float)speed * fDT * dir;
 
 	SetPos(vPos);
 	GetAnimator()->Update();
@@ -59,4 +60,11 @@ void StartPlayer::SetDirAni()
 		GetAnimator()->Play(L"PlayerRightRunAni", true);
 	else if(dir == -1)
 		GetAnimator()->Play(L"PlayerLeftRunAni", true);
+}
+
+void StartPlayer::SetDir(int setDir)
+{
+	dir = setDir;
+	GetAnimator()->Stop();
+	SetDirAni();
 }

@@ -14,7 +14,11 @@ private:
     int minX;
     int maxX;
     int dir;
+    int speed;
 private:
     void SetDirAni();
+public:
+    void SetDir(int setDir);
+    void SetSpeed(int value) { speed = value; }
 };
 

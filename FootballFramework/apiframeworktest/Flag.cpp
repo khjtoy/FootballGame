@@ -8,7 +8,9 @@
 #include "Arrow.h"
 
 Flag::Flag()
-	:curIndex(0)
+	:curIndex(0),
+	 rule(L"↑↓:팀선택"),
+	 rule2(L"Enter:게임시작")
 {
 	// Flag Setting
 	flags[0] = L"Ghana";
@@ -16,6 +18,7 @@ Flag::Flag()
 	flags[2] = L"USA";
 	flags[3] = L"France";
 	flags[4] = L"Argentina";
+	flags[5] = L"Korea";
 
 	SetIndexImage();
 
@@ -78,6 +81,18 @@ void Flag::Render(HDC _dc)
 		, f_curImg->GetDC()
 		, 0, 0, Width, Height
 		, RGB(255, 0, 255));
+
+	// 글자
+	HFONT hFont = CreateFont(30, 0, 0, 0, 0, 0, 0, 0, HANGEUL_CHARSET, 0, 0, 0, VARIABLE_PITCH, TEXT("궁서"));
+
+	HFONT oldFont = (HFONT)SelectObject(_dc, hFont);
+
+	SetTextColor(_dc, RGB(0, 0, 0));
+
+	TextOut(_dc, 830, 300, rule.c_str(), rule.length());
+	Component_Render(_dc);
+
+	TextOut(_dc, 830, 350, rule2.c_str(), rule2.length());
 	Component_Render(_dc);
 }
 

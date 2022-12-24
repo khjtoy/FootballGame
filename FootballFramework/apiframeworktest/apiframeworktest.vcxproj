@@ -176,6 +176,7 @@
     <ClInclude Include="GoalText.h" />
     <ClInclude Include="IdleState.h" />
     <ClInclude Include="Image.h" />
+    <ClInclude Include="InGameUI.h" />
     <ClInclude Include="KeyMgr.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="PathMgr.h" />
@@ -219,6 +220,7 @@
     <ClCompile Include="GoalText.cpp" />
     <ClCompile Include="IdleState.cpp" />
     <ClCompile Include="Image.cpp" />
+    <ClCompile Include="InGameUI.cpp" />
     <ClCompile Include="KeyMgr.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="BWindow.cpp">

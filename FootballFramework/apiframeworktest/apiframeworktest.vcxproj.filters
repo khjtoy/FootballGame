@@ -41,6 +41,7 @@
     <ClCompile Include="Flag.cpp" />
     <ClCompile Include="Arrow.cpp" />
     <ClCompile Include="StartPlayer.cpp" />
+    <ClCompile Include="InGameUI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
@@ -87,6 +88,7 @@
     <ClInclude Include="Flag.h" />
     <ClInclude Include="Arrow.h" />
     <ClInclude Include="StartPlayer.h" />
+    <ClInclude Include="InGameUI.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="apiframeworktest.rc" />
