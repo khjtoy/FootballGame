@@ -16,16 +16,17 @@ private:
 	Image* f_curImg;
 	wstring flags[6];
 	int curIndex;
+	bool check;
 	Arrow* arrowUP;
 	Arrow* arrowDown;
 	wstring rule;
 	wstring rule2;
-private:
-	void SetIndexImage();
 public:
 	void SetcurIndex(int index)
 	{
 		curIndex = index;
 	}
+	void SetCheck(bool _check);
+	void SetIndexImage();
 };
 

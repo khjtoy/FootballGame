@@ -9,6 +9,7 @@
 
 Flag::Flag()
 	:curIndex(0),
+	 check(false),
 	 rule(L"¡è¡é:ÆÀ¼±ÅÃ"),
 	 rule2(L"Enter:°ÔÀÓ½ÃÀÛ")
 {
@@ -44,24 +45,27 @@ Flag::~Flag()
 
 void Flag::Update()
 {
-	if (KEY_TAP(KEY::UP))
+	if (!check)
 	{
-		if (curIndex > 0)
+		if (KEY_TAP(KEY::UP))
 		{
-			curIndex--;
-			SetIndexImage();
-			arrowUP->CheckAlpha(curIndex);
-			arrowDown->CheckAlpha(curIndex);
+			if (curIndex > 0)
+			{
+				curIndex--;
+				SetIndexImage();
+				arrowUP->CheckAlpha(curIndex);
+				arrowDown->CheckAlpha(curIndex);
+			}
 		}
-	}
-	if (KEY_TAP(KEY::DOWN))
-	{
-		if (curIndex < 4)
+		if (KEY_TAP(KEY::DOWN))
 		{
-			curIndex++;
-			SetIndexImage();
-			arrowUP->CheckAlpha(curIndex);
-			arrowDown->CheckAlpha(curIndex);
+			if (curIndex < 4)
+			{
+				curIndex++;
+				SetIndexImage();
+				arrowUP->CheckAlpha(curIndex);
+				arrowDown->CheckAlpha(curIndex);
+			}
 		}
 	}
 }
@@ -82,18 +86,31 @@ void Flag::Render(HDC _dc)
 		, 0, 0, Width, Height
 		, RGB(255, 0, 255));
 
-	// ±ÛÀÚ
-	HFONT hFont = CreateFont(30, 0, 0, 0, 0, 0, 0, 0, HANGEUL_CHARSET, 0, 0, 0, VARIABLE_PITCH, TEXT("±Ã¼­"));
+	if (!check)
+	{
+		// ±ÛÀÚ
+		HFONT hFont = CreateFont(30, 0, 0, 0, 0, 0, 0, 0, HANGEUL_CHARSET, 0, 0, 0, VARIABLE_PITCH, TEXT("±Ã¼­"));
 
-	HFONT oldFont = (HFONT)SelectObject(_dc, hFont);
+		HFONT oldFont = (HFONT)SelectObject(_dc, hFont);
 
-	SetTextColor(_dc, RGB(0, 0, 0));
+		SetTextColor(_dc, RGB(0, 0, 0));
 
-	TextOut(_dc, 830, 300, rule.c_str(), rule.length());
+		TextOut(_dc, 830, 300, rule.c_str(), rule.length());
+		Component_Render(_dc);
+
+		TextOut(_dc, 830, 350, rule2.c_str(), rule2.length());
+	}
 	Component_Render(_dc);
+}
 
-	TextOut(_dc, 830, 350, rule2.c_str(), rule2.length());
-	Component_Render(_dc);
+void Flag::SetCheck(bool _check)
+{
+	check = _check;
+	if (_check)
+	{
+		arrowDown->CheckAlpha(-1);
+		arrowUP->CheckAlpha(-1);
+	}
 }
 
 void Flag::SetIndexImage()

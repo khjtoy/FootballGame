@@ -5,6 +5,7 @@
 #include "Staduim.h"
 #include "Goal.h"
 #include "Ball.h"
+#include "InGameUI.h"
 #include "Core.h"
 #include "Image.h"
 #include "PathMgr.h"
@@ -66,6 +67,9 @@ void Scene_InGame::Enter()
 	diveCol->SetScale(Vec2(1.f, 30.f));
 	AddObject(diveCol, GROUP_TYPE::COLLIDER);
 	goalkeeper->SetDiveCollider(diveCol);
+
+	pObj = new InGameUI();
+	AddObject(pObj, GROUP_TYPE::UI);
  
 
 	// 충돌 지정

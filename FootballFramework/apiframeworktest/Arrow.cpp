@@ -60,7 +60,8 @@ void Arrow::ChangeImg()
 
 void Arrow::CheckAlpha(int index)
 {
-	if (arrowDir == Dir::UP && index == 0) 
+	if (index == -1) alpha = 1;
+	else if (arrowDir == Dir::UP && index == 0) 
 		alpha = 1;
 	else if (arrowDir == Dir::DOWN && index == 4) 
 		alpha = 1;
